@@ -3,12 +3,11 @@ package com.vendor.vendormanagement.controller;
 import com.vendor.vendormanagement.entity.Restaurant;
 import com.vendor.vendormanagement.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
     @Autowired
@@ -30,8 +29,8 @@ public class RestaurantController {
     }
 
     @GetMapping("/{vendorId}/{restaurantId}")
-    public Restaurant getRestaurant(@PathVariable int restaurantId) {
-        return service.findByID(restaurantId);
+    public Restaurant getRestaurant(@PathVariable int vendorId, @PathVariable int restaurantId) {
+        return service.findByID(vendorId, restaurantId);
     }
 
     @DeleteMapping("/{restaurantId}")

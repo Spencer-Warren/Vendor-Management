@@ -19,8 +19,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish findByID(int id) {
-        return dao.findById(id).orElseGet(Dish::new);
+    public Dish findByRestaurantAndId(int restaurantId, int id) {
+        return dao.findByRestaurantAndId(restaurantId, id);
     }
 
     @Override

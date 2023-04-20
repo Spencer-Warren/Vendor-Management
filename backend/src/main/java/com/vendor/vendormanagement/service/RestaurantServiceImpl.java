@@ -1,6 +1,6 @@
 package com.vendor.vendormanagement.service;
 
-import com.vendor.vendormanagement.dao.ResturantDao;
+import com.vendor.vendormanagement.dao.RestaurantDao;
 import com.vendor.vendormanagement.entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
-    ResturantDao dao;
+    RestaurantDao dao;
 
     @Override
     public Restaurant saveRestaurant(Restaurant restaurant) {
@@ -18,8 +18,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant findByID(int id) {
-        return dao.findById(id).orElseGet(Restaurant::new);
+    public Restaurant findByID(int vendorId, int id) {
+        return dao.findByVendorAndId(vendorId, id);
     }
 
     @Override
@@ -29,8 +29,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public String deleteRestaurant(int id) {
-        dao.deleteById(id);
-        return "Deleted Restaurant with ID:" + id;
+        if (dao.findById(id).isPresent()) {
+            dao.deleteById(id);
+            return "Deleted Restaurant with ID:" + id;
+        }
+        return "Restaurant with ID: " + id + " not found";
     }
 
     @Override

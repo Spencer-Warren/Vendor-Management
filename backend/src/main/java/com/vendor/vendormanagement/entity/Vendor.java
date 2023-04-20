@@ -15,7 +15,7 @@ public class Vendor {
     private String vendorEmail;
     private String vendorRole;
 
-    @OneToMany(mappedBy = "vendor", orphanRemoval = true)
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Restaurant> restaurants;
 
     public Vendor() {

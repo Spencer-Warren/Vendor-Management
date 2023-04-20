@@ -21,17 +21,17 @@ public class VendorController {
         return service.updateVendor(vendor);
     }
 
-    @GetMapping("/vendor/{id}")
-    public Vendor getVendorById(@PathVariable int vendorId){
-        return service.findByID(vendorId);
+    @GetMapping("/vendor/id/{vendorId}")
+    public Vendor getVendorById(@PathVariable int id){
+        return service.findByID(id);
     }
 
-    @GetMapping("/vendor/{username}")
+    @GetMapping("/vendor/username/{username}")
     public Vendor getVendorByUsername(@PathVariable String username) {
         return service.findByUsername(username);
     }
 
-    @DeleteMapping("/vendor/{id}")
+    @DeleteMapping("/vendor/{vendorId}")
     public String deleteVendor(@PathVariable int vendorId) {
         return service.deleteVendor(vendorId);
     }

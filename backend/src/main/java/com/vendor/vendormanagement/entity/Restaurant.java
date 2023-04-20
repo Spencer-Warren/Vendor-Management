@@ -14,8 +14,8 @@ public class Restaurant {
     private String restaurantType;
     private String restaurantCategory;
 
-    @ManyToOne
-    @JoinColumn(name="vendorID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "vendorID")
     private Vendor vendor;
     @OneToMany(mappedBy = "restaurant")
     private List<Dish> dishes;

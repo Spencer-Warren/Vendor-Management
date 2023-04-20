@@ -28,7 +28,10 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     public Vendor updateVendor(Vendor vendor) {
-        return dao.save(vendor);
+        if (dao.findById(vendor.getVendorID()).isPresent()) {
+            return dao.save(vendor);
+        }
+        return null;
     }
 
     @Override
