@@ -17,7 +17,7 @@ public class License {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "restaurantID")
-    private Resturant resturant;
+    private Restaurant restaurant;
 
     public int getLicenseID() {
         return licenseID;
@@ -51,12 +51,12 @@ public class License {
         this.fileType = fileType;
     }
 
-    public Resturant getResturant() {
-        return resturant;
+    public Restaurant getResturant() {
+        return restaurant;
     }
 
-    public void setResturant(Resturant resturant) {
-        this.resturant = resturant;
+    public void setResturant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class License {
                 ", fileData=" + Arrays.toString(fileData) +
                 ", fileName='" + fileName + '\'' +
                 ", fileType='" + fileType + '\'' +
-                ", resturant=" + resturant +
+                ", resturant=" + restaurant +
                 '}';
     }
 }

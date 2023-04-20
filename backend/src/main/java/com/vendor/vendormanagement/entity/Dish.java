@@ -13,5 +13,5 @@ public class Dish {
     private String dishCategory;
     @ManyToOne
     @JoinColumn(name="restaurantID")
-    private Resturant resturant;
+    private Restaurant restaurant;
 }

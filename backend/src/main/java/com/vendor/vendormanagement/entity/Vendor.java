@@ -13,9 +13,10 @@ public class Vendor {
     private String vendorUsername;
     private String vendorPassword;
     private String vendorEmail;
+    private String vendorRole;
 
     @OneToMany(mappedBy = "vendor", orphanRemoval = true)
-    private List<Resturant> resturants;
+    private List<Restaurant> restaurants;
 
     public Vendor() {
         vendorID = 0;
@@ -63,6 +64,14 @@ public class Vendor {
 
     public void setVendorEmail(String vendorEmail) {
         this.vendorEmail = vendorEmail;
+    }
+
+    public String getVendorRole() {
+        return vendorRole;
+    }
+
+    public void setVendorRole(String vendorRole) {
+        this.vendorRole = vendorRole;
     }
 
     @Override
