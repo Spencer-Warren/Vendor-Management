@@ -11,7 +11,7 @@ import java.util.List;
 public interface DishDao extends JpaRepository<Dish, Integer> {
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id = ?1")
     public abstract List<Dish> findAllByRestaurant(int restaurantId);
-
+    
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id = ?1 AND d.id = ?2")
     public abstract Dish findByRestaurantAndId(int restaurantId, int id);
 }

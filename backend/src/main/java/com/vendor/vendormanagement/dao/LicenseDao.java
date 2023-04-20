@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LicenseDao extends JpaRepository<License, Integer> {
-    @Query("Select l from License l where l.restaurant.id = ?1")
+    @Query("Select l from License l where l.restaurantID = ?1")
     public abstract License findByRestaurant(int restaurantId);
+
+    @Query("Delete from License l where l.restaurantID = ?1")
+    public abstract void deleteByRestaurant(int restaurantId);
 }

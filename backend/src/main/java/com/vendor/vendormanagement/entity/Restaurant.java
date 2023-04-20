@@ -1,5 +1,7 @@
 package com.vendor.vendormanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,7 +19,8 @@ public class Restaurant {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "vendorID")
     private Vendor vendor;
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", orphanRemoval = true)
+    @JsonIgnore
     private List<Dish> dishes;
 
     public Restaurant() {

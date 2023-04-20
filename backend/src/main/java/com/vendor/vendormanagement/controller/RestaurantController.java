@@ -13,12 +13,12 @@ public class RestaurantController {
     @Autowired
     private RestaurantService service;
 
-    @PostMapping("/")
+    @PostMapping("")
     public Restaurant newRestaurant(@RequestBody Restaurant restaurant) {
         return service.saveRestaurant(restaurant);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public Restaurant updateRestaurant(@RequestBody Restaurant restaurant) {
         return service.updateRestaurant(restaurant);
     }

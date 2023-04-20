@@ -1,8 +1,7 @@
 package com.vendor.vendormanagement.entity;
 
 import jakarta.persistence.*;
-
-import java.util.Arrays;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class License {
@@ -14,10 +13,26 @@ public class License {
     private byte[] fileData;
     private String fileName;
     private String fileType;
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "restaurantID")
-    private Restaurant restaurant;
+    private int restaurantID;
+
+    public License(MultipartFile file, int restaurantID) {
+        this.restaurantID = restaurantID;
+        try {
+            this.fileData = file.getBytes();
+            this.fileName = file.getOriginalFilename();
+            this.fileType = file.getContentType();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public License() {
+        licenseID = 0;
+        fileData = null;
+        fileName = "";
+        fileType = "";
+        restaurantID = 0;
+    }
 
     public int getLicenseID() {
         return licenseID;
@@ -51,22 +66,20 @@ public class License {
         this.fileType = fileType;
     }
 
-    public Restaurant getResturant() {
-        return restaurant;
+    public int getRestaurantID() {
+        return restaurantID;
     }
-
-    public void setResturant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurantID(int restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     @Override
     public String toString() {
         return "License{" +
                 "licenseID=" + licenseID +
-                ", fileData=" + Arrays.toString(fileData) +
                 ", fileName='" + fileName + '\'' +
                 ", fileType='" + fileType + '\'' +
-                ", resturant=" + restaurant +
+                ", restaurantID=" + restaurantID +
                 '}';
     }
 }

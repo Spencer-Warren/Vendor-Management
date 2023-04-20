@@ -13,12 +13,13 @@ public class DishController {
     @Autowired
     private DishService service;
 
-    @PostMapping("/")
+    @PostMapping("")
     public Dish newDish(@RequestBody Dish dish) {
+        System.out.println(dish);
         return service.saveDish(dish);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public Dish updateDish(@RequestBody Dish dish) {
         return service.updateDish(dish);
     }
