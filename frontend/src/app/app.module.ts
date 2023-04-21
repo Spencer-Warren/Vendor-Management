@@ -8,12 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { PublicComponent } from './public/public.component';
 import { VendorComponent } from './vendor/vendor.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './vendor/login/login.component';
+import { RegisterComponent } from './vendor/register/register.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { DishComponent } from './dish/dish.component';
-import { ProfileComponent } from './profile/profile.component';
-import { VendorRestaurantComponent } from './vendor-restaurant/vendor-restaurant.component';
+import { DishComponent } from './vendor/dish/dish.component';
+import { ProfileComponent } from './vendor/profile/profile.component';
+import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
 
 @NgModule({
   declarations: [
