@@ -6,8 +6,8 @@ import { VendorComponent } from './vendor/vendor.component';
 import { LoginComponent } from './vendor/login/login.component';
 import { RegisterComponent } from './vendor/register/register.component';
 import { ProfileComponent } from './vendor/profile/profile.component';
-import { PublicComponent } from './public/public.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
+import { PublicComponent } from './home/public/public.component';
+import { RestaurantComponent } from './home/restaurant/restaurant.component';
 import { DishComponent } from './vendor/dish/dish.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
 
