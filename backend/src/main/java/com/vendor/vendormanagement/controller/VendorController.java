@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class VendorController {
     @Autowired
@@ -36,9 +37,11 @@ public class VendorController {
         return service.deleteVendor(vendorId);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public boolean login(@RequestBody Vendor vendor) {
+        System.out.println(vendor.getVendorUsername() + " " + vendor.getVendorPassword());
         return service.login(vendor);
+//        return "login";
     }
 
 }

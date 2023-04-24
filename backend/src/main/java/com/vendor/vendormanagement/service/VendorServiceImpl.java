@@ -3,6 +3,7 @@ package com.vendor.vendormanagement.service;
 import com.vendor.vendormanagement.dao.VendorDao;
 import com.vendor.vendormanagement.entity.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,8 +12,13 @@ public class VendorServiceImpl implements VendorService{
     @Autowired
     VendorDao dao;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     @Override
     public Vendor saveVendor(Vendor vendor) {
+        vendor.setVendorPassword(encoder.encode(vendor.getVendorPassword()));
+        vendor.setVendorRole("ROLE_VENDOR");
         return dao.save(vendor);
     }
 
@@ -29,6 +35,8 @@ public class VendorServiceImpl implements VendorService{
     @Override
     public Vendor updateVendor(Vendor vendor) {
         if (dao.findById(vendor.getVendorID()).isPresent()) {
+            vendor.setVendorPassword(encoder.encode(vendor.getVendorPassword()));
+            vendor.setVendorRole("ROLE_VENDOR");
             return dao.save(vendor);
         }
         return null;

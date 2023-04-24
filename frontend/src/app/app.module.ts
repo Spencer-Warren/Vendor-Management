@@ -14,6 +14,8 @@ import { RestaurantComponent } from './home/restaurant/restaurant.component';
 import { DishComponent } from './vendor/dish/dish.component';
 import { ProfileComponent } from './vendor/profile/profile.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

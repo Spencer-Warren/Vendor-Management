@@ -3,6 +3,7 @@ package com.vendor.vendormanagement.controller;
 import com.vendor.vendormanagement.entity.Dish;
 import com.vendor.vendormanagement.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +15,14 @@ public class DishController {
     private DishService service;
 
     @PostMapping("")
+    @PreAuthorize("hasRole('ROLE_VENDOR')")
     public Dish newDish(@RequestBody Dish dish) {
         System.out.println(dish);
         return service.saveDish(dish);
     }
 
     @PutMapping("")
+    @PreAuthorize("hasRole('ROLE_VENDOR')")
     public Dish updateDish(@RequestBody Dish dish) {
         return service.updateDish(dish);
     }
@@ -35,6 +38,7 @@ public class DishController {
     }
 
     @DeleteMapping("/{restaurantId}")
+    @PreAuthorize("hasRole('ROLE_VENDOR')")
     public String deleteDish(@PathVariable int dishId) {
         return service.deleteDish(dishId);
     }

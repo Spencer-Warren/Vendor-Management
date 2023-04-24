@@ -14,7 +14,10 @@ public class VendorDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Vendor vendor = dao.findByVendorusername(username);
+       Vendor vendor = dao.findByVendorusername(username);
+        if (vendor == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
         return new VendorUserDetails(vendor);
     }
 }
