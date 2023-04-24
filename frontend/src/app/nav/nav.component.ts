@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -8,7 +9,30 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NavComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.router.events.subscribe((val) => {
+      switch (this.router.url) {
+        case "/public":
+          this.setNavState(navStates.public);
+          break;
+        case "/vendor":
+          if (localStorage.getItem("vendorToken") != null) {
+            this.setNavState(navStates.vendorLoggedIn);
+          }
+          else {
+            this.setNavState(navStates.vendor);
+          }
+          break;
+        case "/home":
+          this.setNavState(navStates.home);
+      }
+    }
+    );
+  }
+
+
 
   currentNavState: navStates = navStates.home;
   navStates = navStates;
@@ -22,8 +46,8 @@ export class NavComponent {
 }
 
 export enum navStates {
-  home,
-  public,
-  vendor,
-  vendorLoggedIn
+  home = "home",
+  public = "public",
+  vendor = "vendor",
+  vendorLoggedIn = "vendorLoggedIn",
 }

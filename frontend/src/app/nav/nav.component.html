@@ -2,38 +2,38 @@
     <div class="container-fluid">
         <div [ngSwitch]="observableNavState | async">
             <div *ngSwitchCase="navStates.home">
-                <a class="navbar-brand" (click)="setNavState(navStates.home)" routerLink="/">Food Delivery</a>
+                <a class="navbar-brand" routerLink="/">Food Delivery</a>
             </div>
             <div *ngSwitchCase="navStates.vendor">
-                <a class="navbar-brand" (click)="setNavState(navStates.vendor)" routerLink="/vendor">Vendor Management</a>
+                <a class="navbar-brand" routerLink="/vendor">Vendor Management</a>
             </div>
             <div *ngSwitchCase="navStates.public">
-                <a class="navbar-brand" (click)="setNavState(navStates.home)" routerLink="/">Food Delivery</a>
+                <a class="navbar-brand" routerLink="/">Food Delivery</a>
             </div>
             <div *ngSwitchCase="navStates.vendorLoggedIn">
-                <a class="navbar-brand" (click)="setNavState(navStates.vendor)" routerLink="/vendor">Vendor Management</a>
+                <a class="navbar-brand" routerLink="/vendor">Vendor Management</a>
             </div>
         </div>
 
             <div [ngSwitch]="observableNavState | async">
                 <div *ngSwitchCase="navStates.home" class="navbar-nav">
                     <a class="nav-link" routerLink="/">Home</a>
-                    <a class="nav-link" (click)="setNavState(navStates.public)" routerLink="/public">Restaurants</a>
-                    <a class="nav-link" (click)="setNavState(navStates.vendor)" routerLink="/vendor">Vendor</a>
+                    <a class="nav-link" routerLink="/public">Restaurants</a>
+                    <a class="nav-link" routerLink="/vendor">Vendor</a>
                 </div>
                 <div *ngSwitchCase="navStates.vendor" class="navbar-nav">
-                    <a class="nav-link" (click)="setNavState(navStates.home)" routerLink="/">Home</a>
+                    <a class="nav-link" routerLink="/">Home</a>
                     <a class="nav-link" routerLink="/vendor/register">Register</a>
-                    <a class="nav-link" (click)="setNavState(navStates.vendorLoggedIn)" routerLink="/vendor/login">Login</a>
+                    <a class="nav-link" routerLink="/vendor/login">Login</a>
                 </div>
                 <div *ngSwitchCase="navStates.public" class="navbar-nav">
-                    <a class="nav-link" (click)="setNavState(navStates.home)" routerLink="/">Home</a>
+                    <a class="nav-link" routerLink="/">Home</a>
                 </div>
                 <div *ngSwitchCase="navStates.vendorLoggedIn" class="navbar-nav">
                     <a class="nav-link" routerLink="/vendor">Home</a>
                     <a class="nav-link" routerLink="/vendor/restaurants">Restaurants</a>
                     <a class="nav-link" routerLink="/vendor/profile">Profile</a>
-                    <a class="nav-link" (click)="setNavState(navStates.home)" routerLink="/logout">Logout</a>
+                    <a class="nav-link" routerLink="/logout">Logout</a>
                 </div>
             </div>
     </div>
