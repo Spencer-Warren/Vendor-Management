@@ -3,6 +3,7 @@ package com.vendor.vendormanagement.controller;
 import com.vendor.vendormanagement.entity.Vendor;
 import com.vendor.vendormanagement.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +19,8 @@ public class VendorController {
     }
 
     @PutMapping("/vendor")
-    public Vendor updateVendor(@RequestBody Vendor vendor) {
-        return service.updateVendor(vendor);
+    public void updateVendor(@RequestBody Vendor vendor) {
+        service.updateVendor(vendor);
     }
 
     @GetMapping("/vendor/id/{vendorId}")
@@ -33,8 +34,8 @@ public class VendorController {
     }
 
     @DeleteMapping("/vendor/{vendorId}")
-    public String deleteVendor(@PathVariable int vendorId) {
-        return service.deleteVendor(vendorId);
+    public void deleteVendor(@PathVariable int vendorId) {
+        service.deleteVendor(vendorId);
     }
 
     @PostMapping("/login")

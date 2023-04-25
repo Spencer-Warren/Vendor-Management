@@ -1,12 +1,12 @@
 
 export class Vendor {
-    vendorId: number;
+    vendorId: Number;
     vendorName: string;
     vendorEmail: string;
     vendorUsername: string;
     vendorPassword: string;
 
-    constructor(vendorId: number, vendorName: string, vendorEmail: string, vendorUsername: string, vendorPassword: string) {
+    constructor(vendorId: Number, vendorName: string, vendorEmail: string, vendorUsername: string, vendorPassword: string) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.vendorEmail = vendorEmail;

@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit{
     if (this.registerForm.valid && this.passwordMatch) {
 
       let user: Vendor = new Vendor(0, this.registerForm.get('name')?.value, this.registerForm.get('email')?.value, this.registerForm.get('username')?.value, this.registerForm.get('password')?.value);
-      this.service.registerUser(user).subscribe((data: any) => {
+      this.service.registerVendor(user).subscribe((data: any) => {
         this.success();
       });
     }

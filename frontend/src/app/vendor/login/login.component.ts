@@ -26,17 +26,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      let user = new Vendor(0,"","",this.loginForm.value.username, this.loginForm.value.password);
-      console.log(user);
-      this.authService.authenticate(user).subscribe(
-        (data: Vendor) => {
-          if (data.vendorId == 0) {
-            alert("Invalid Credentials");
-            return;
-          }
-          else {
-            this.authService.success(data);
-            this.router.navigate(['vendor/profile']);
+      let loginUser = new Vendor(0,"","",this.loginForm.value.username, this.loginForm.value.password);
+      this.authService.authenticate(loginUser).subscribe(
+        (data: any) => {
+          if (data.vendorId != 0) {
+            let newVendor: Vendor = new Vendor(data.vendorId, data.vendorName, data.vendorEmail, data.vendorUsername, loginUser.vendorPassword);
+            this.authService.success(newVendor);
+            this.router.navigate(['vendor/home']);
           }
         }
       )

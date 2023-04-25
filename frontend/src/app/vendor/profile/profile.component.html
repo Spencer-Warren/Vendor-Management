@@ -1,1 +1,38 @@
-<p>profile works!</p>
+<div class="card w-75 m-4">
+    <div class="card-header">
+        <h3>Profile</h3>
+    </div>
+    <div class="card-body">
+        <div class="row ">
+            <div class="col-2">
+                <h4>Username:</h4>
+            </div>
+            <div class="col">
+                <h4>{{username}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <h4>Vendor name:</h4>
+            </div>
+            <div class="col">
+                <h4>{{name}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <h4>Vendor Email:</h4>
+            </div>
+            <div class="col">
+                <h4>{{email}}</h4>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary m-2" (click)="toEdit()">Edit Profile</button>
+        <button class="btn btn-danger" (click)="toDelete()">Delete Profile</button>
+    </div>
+    
+</div>

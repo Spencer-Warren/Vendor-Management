@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,27 +10,28 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NavComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authservice: AuthenticationService) { }
 
   ngOnInit(): void {
     this.router.events.subscribe((val) => {
-      switch (this.router.url) {
-        case "/public":
-          this.setNavState(navStates.public);
-          break;
-        case "/vendor":
-          if (localStorage.getItem("vendorToken") != null) {
-            this.setNavState(navStates.vendorLoggedIn);
-          }
-          else {
-            this.setNavState(navStates.vendor);
-          }
-          break;
-        case "/home":
-          this.setNavState(navStates.home);
+      if (this.router.url.match(/\/vendor\/.*/)) {
+        if (sessionStorage.getItem("vendorId") != null) {
+          this.setNavState(navStates.vendorLoggedIn);
+        }
+        else {
+          this.setNavState(navStates.vendor);
+        }
       }
+      else if (this.router.url == "/public") {
+        this.setNavState(navStates.public);
+      }
+
     }
     );
+  }
+
+  logout() {
+    this.authservice.logout();
   }
 
 
@@ -46,8 +48,8 @@ export class NavComponent {
 }
 
 export enum navStates {
-  home = "home",
-  public = "public",
-  vendor = "vendor",
-  vendorLoggedIn = "vendorLoggedIn",
+  home,
+  public,
+  vendor ,
+  vendorLoggedIn,
 }

@@ -1,47 +1,48 @@
 import { Injectable } from '@angular/core';
 import { RESTAPIService } from './restapi.service';
 import { Vendor } from '../classes/vendor';
-import { AppComponent } from '../app.component';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  SESSION_USERNAME_KEY = 'authenticatedUser';
 
-  private user!: Vendor;
-  private userDetail!: Vendor;
-
-  constructor(private restapi: RESTAPIService) { }
+  constructor(private restapi: RESTAPIService, private router: Router) { }
 
   authenticate(vendor: Vendor) {
-    return this.restapi.loginUser(vendor, { headers: { authorization: this.createAuthenticationToken(vendor.vendorUsername, vendor.vendorPassword) } });
+    return this.restapi.loginVendor(vendor, { headers: { authorization: this.createAuthenticationToken(vendor.vendorUsername, vendor.vendorPassword) } });
   }
 
   success(vendor: Vendor) {
-    console.log(vendor);
-    this.userDetail = vendor;
-    sessionStorage.setItem(this.SESSION_USERNAME_KEY, vendor.vendorUsername);
+    sessionStorage.setItem("vendorId", vendor.vendorId.toString());
+    sessionStorage.setItem("vendorName", vendor.vendorName);
+    sessionStorage.setItem("vendorEmail", vendor.vendorEmail);
+    sessionStorage.setItem("vendorUsername", vendor.vendorUsername);
+    sessionStorage.setItem("token", this.createAuthenticationToken(vendor.vendorUsername, vendor.vendorPassword));
   }
 
-  get userValue(): Vendor {
-    return this.user;
-  }
-
-  get userDetailValue(): Vendor {
-    return this.userDetail;
+  update (vendor: Vendor) {
+    sessionStorage.setItem("vendorName", vendor.vendorName);
+    sessionStorage.setItem("vendorEmail", vendor.vendorEmail);
+    sessionStorage.setItem("vendorUsername", vendor.vendorUsername);
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(this.SESSION_USERNAME_KEY);
+    let user = sessionStorage.getItem("vendorUsername");
     return !(user === null);
   }
 
   logout() {
-    sessionStorage.removeItem(this.SESSION_USERNAME_KEY);
-    this.user = new Vendor(0, "", "", "", "");
+    alert("You have been logged out");
+    sessionStorage.removeItem("vendorId");
+    sessionStorage.removeItem("vendorName");
+    sessionStorage.removeItem("vendorEmail");
+    sessionStorage.removeItem("vendorUsername");
+    sessionStorage.removeItem("token");
+    
+    this.router.navigate(['']);
   }
 
   createAuthenticationToken(username: String, password: String) {

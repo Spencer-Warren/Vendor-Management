@@ -10,15 +10,19 @@ import { PublicComponent } from './home/public/public.component';
 import { RestaurantComponent } from './home/restaurant/restaurant.component';
 import { DishComponent } from './vendor/dish/dish.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
+import { VendorHomeComponent } from './vendor/home/vendor-home.component';
+import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',       component: HomeComponent},
 
   { path: 'vendor',     component: VendorComponent },
+  { path: 'vendor/home',       component: VendorHomeComponent},
   { path: 'vendor/login',      component: LoginComponent},
   { path: 'vendor/register',   component: RegisterComponent},
   { path: 'vendor/profile',    component: ProfileComponent},
+  { path: 'vendor/profile/edit', component: ProfileEditComponent },
   { path: 'vendor/restaurants', component: VendorRestaurantComponent},
 
   { path: 'public',     component: PublicComponent},

@@ -30,10 +30,10 @@
                     <a class="nav-link" routerLink="/">Home</a>
                 </div>
                 <div *ngSwitchCase="navStates.vendorLoggedIn" class="navbar-nav">
-                    <a class="nav-link" routerLink="/vendor">Home</a>
+                    <a class="nav-link" routerLink="/vendor/home">Home</a>
                     <a class="nav-link" routerLink="/vendor/restaurants">Restaurants</a>
                     <a class="nav-link" routerLink="/vendor/profile">Profile</a>
-                    <a class="nav-link" routerLink="/logout">Logout</a>
+                    <a class="nav-link" (click)="logout()">Logout</a>
                 </div>
             </div>
     </div>

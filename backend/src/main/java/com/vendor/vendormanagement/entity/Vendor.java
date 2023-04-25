@@ -8,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,13 +15,12 @@ import java.util.List;
 public class Vendor implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("vendorId")
     private int vendorID;
     private String vendorName;
     private String vendorUsername;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String vendorPassword;
     private String vendorEmail;
-    @JsonIgnore
     private String vendorRole;
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.MERGE, orphanRemoval = true)
@@ -75,7 +73,7 @@ public class Vendor implements UserDetails {
     public void setVendorEmail(String vendorEmail) {
         this.vendorEmail = vendorEmail;
     }
-
+    @JsonIgnore
     public String getVendorRole() {
         return vendorRole;
     }
@@ -94,7 +92,7 @@ public class Vendor implements UserDetails {
                 ", VendorEmail='" + vendorEmail + '\'' +
                 '}';
     }
-
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (vendorRole == null) {
@@ -106,6 +104,7 @@ public class Vendor implements UserDetails {
         return authorities;
     }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
         return vendorPassword;
@@ -119,21 +118,22 @@ public class Vendor implements UserDetails {
         return vendorUsername;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;

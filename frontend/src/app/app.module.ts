@@ -18,6 +18,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './services/errorInterceptor.service';
 import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
+import { VendorHomeComponent } from './vendor/home/vendor-home.component';
+import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
     RestaurantComponent,
     DishComponent,
     ProfileComponent,
-    VendorRestaurantComponent
+    VendorRestaurantComponent,
+    VendorHomeComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
