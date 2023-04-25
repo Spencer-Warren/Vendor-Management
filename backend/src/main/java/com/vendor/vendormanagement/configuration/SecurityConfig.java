@@ -1,6 +1,7 @@
 package com.vendor.vendormanagement.configuration;
 
 import com.vendor.vendormanagement.service.VendorDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -18,11 +20,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
+    @Autowired
+    private VendorDetailsService vendorDetailsService;
 
     @Bean
-    public UserDetailsService userDetailsService() {return new VendorDetailsService();}
+    public BCryptPasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,17 +33,18 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/register", "/api/login").permitAll()
-
                 .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginProcessingUrl("/api/login")
+//                .usernameParameter("vendorUsername")
+//                .passwordParameter("vendorPassword")
+//                .successHandler(appAuthenticationSuccessHandler())
+//                .and()
+//                .logout()
+//                .logoutUrl("/api/logout")
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/api/login")
-                .usernameParameter("vendorUsername")
-                .passwordParameter("vendorPassword")
-                .successHandler(appAuthenticationSuccessHandler())
-                .and()
-                .logout()
-                .logoutUrl("/api/logout")
+                .httpBasic()
                 .and()
                 .build();
     }
@@ -49,14 +52,10 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService());
+        provider.setUserDetailsService(vendorDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 
-    @Bean
-    public AuthenticationSuccessHandler appAuthenticationSuccessHandler(){
-        return new AppAuthenticationSuccessHandler();
-    }
 
 }

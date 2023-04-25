@@ -8,5 +8,5 @@ public interface VendorService {
     public Vendor findByID(int id);
     public Vendor updateVendor(Vendor vendor);
     public String deleteVendor(int id);
-    public boolean login(Vendor vendor);
+    public Vendor login(Vendor vendor);
 }

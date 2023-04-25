@@ -17,14 +17,17 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     public Vendor saveVendor(Vendor vendor) {
-        vendor.setVendorPassword(encoder.encode(vendor.getVendorPassword()));
+        vendor.setPassword(encoder.encode(vendor.getPassword()));
         vendor.setVendorRole("ROLE_VENDOR");
         return dao.save(vendor);
     }
 
     @Override
     public Vendor findByUsername(String username) {
-        return dao.findByVendorusername(username);
+        System.out.println("Username: " + username);
+        Vendor vendor = dao.findByVendorusername(username);
+        System.out.println("Vendor: " + vendor);
+        return vendor;
     }
 
     @Override
@@ -35,7 +38,6 @@ public class VendorServiceImpl implements VendorService{
     @Override
     public Vendor updateVendor(Vendor vendor) {
         if (dao.findById(vendor.getVendorID()).isPresent()) {
-            vendor.setVendorPassword(encoder.encode(vendor.getVendorPassword()));
             vendor.setVendorRole("ROLE_VENDOR");
             return dao.save(vendor);
         }
@@ -49,8 +51,14 @@ public class VendorServiceImpl implements VendorService{
     }
 
     @Override
-    public boolean login(Vendor vendor) {
-        Vendor v = dao.findByVendorusernameAndPassword(vendor.getVendorUsername(), vendor.getVendorPassword());
-        return v != null;
+    public Vendor login(Vendor vendor) {
+        String password = vendor.getPassword();
+        Vendor v = dao.findByVendorusername(vendor.getUsername());
+        if (v != null) {
+            if (encoder.matches(password, v.getPassword())) {
+                return v;
+            }
+        }
+        return new Vendor();
     }
 }

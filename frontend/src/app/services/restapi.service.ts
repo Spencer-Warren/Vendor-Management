@@ -26,10 +26,10 @@ export class RESTAPIService {
   }
 
   getUser(username: any) {
-    return this.http.get(this.url + "/user/" + username, this.httpOptions);
+    return this.http.get(this.url + "/vendor/" + username, this.httpOptions);
   }
 
-  loginUser(user: Vendor) {
-    return this.http.post(this.url + "/login", user, this.httpOptions);
+  loginUser(user: Vendor, httpOptions: any): Observable<any> {
+    return this.http.post(this.url + "/login", user, httpOptions);
   }
 }

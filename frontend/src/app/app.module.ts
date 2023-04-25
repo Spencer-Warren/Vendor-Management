@@ -15,7 +15,9 @@ import { DishComponent } from './vendor/dish/dish.component';
 import { ProfileComponent } from './vendor/profile/profile.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './services/errorInterceptor.service';
+import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

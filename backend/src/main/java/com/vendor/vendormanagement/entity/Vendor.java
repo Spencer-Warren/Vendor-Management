@@ -1,14 +1,19 @@
 package com.vendor.vendormanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class Vendor {
+public class Vendor implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vendorID;
@@ -17,6 +22,7 @@ public class Vendor {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String vendorPassword;
     private String vendorEmail;
+    @JsonIgnore
     private String vendorRole;
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.MERGE, orphanRemoval = true)
@@ -38,28 +44,28 @@ public class Vendor {
         this.vendorID = vendorID;
     }
 
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setVendorUsername(String username) {
+        this.vendorUsername = username;
     }
 
     public String getVendorUsername() {
         return vendorUsername;
     }
 
-    public void setVendorUsername(String vendorUsername) {
-        this.vendorUsername = vendorUsername;
-    }
-
     public String getVendorPassword() {
         return vendorPassword;
     }
 
-    public void setVendorPassword(String vendorPassword) {
-        this.vendorPassword = vendorPassword;
+    public void setVendorPassword(String password) {
+        this.vendorPassword = password;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
     public String getVendorEmail() {
@@ -88,4 +94,51 @@ public class Vendor {
                 ", VendorEmail='" + vendorEmail + '\'' +
                 '}';
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (vendorRole == null) {
+            return List.of();
+        }
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(vendorRole);
+        ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(authority);
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return vendorPassword;
+    }
+    public void setPassword(String encode) {
+        this.vendorPassword = encode;
+    }
+
+    @Override
+    public String getUsername() {
+        return vendorUsername;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+
 }

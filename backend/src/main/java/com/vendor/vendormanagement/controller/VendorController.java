@@ -27,7 +27,7 @@ public class VendorController {
         return service.findByID(id);
     }
 
-    @GetMapping("/vendor/username/{username}")
+    @GetMapping("/vendor/{username}")
     public Vendor getVendorByUsername(@PathVariable String username) {
         return service.findByUsername(username);
     }
@@ -38,10 +38,8 @@ public class VendorController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody Vendor vendor) {
-        System.out.println(vendor.getVendorUsername() + " " + vendor.getVendorPassword());
+    public Vendor login(@RequestBody Vendor vendor) {
         return service.login(vendor);
-//        return "login";
     }
 
 }
