@@ -1,1 +1,25 @@
-<p>vendor-restaurant works!</p>
+<div class="card m-5 w-90">
+    <div class="card-header">
+        <h3>Your Restaurants</h3>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-primary" (click)="toCreate()">Create a Restaurant</button>
+        <div *ngIf="restaurants.length == 0" class="m-3">
+            No restaurants found... <br>
+            you can create one using the button above.
+        </div>
+        <div *ngIf="restaurants.length > 0" class="row">
+            <div *ngFor="let restaurant of restaurants" class="col-md-4">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <h4>{{restaurant.restaurantName}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{{restaurant.restaurantDescription}}</p>
+                        <a (click)="toEdit(restaurant.restaurantID)" class="btn btn-primary me-2">Edit</a>
+                        <button (click)="delete(restaurant.restaurantID, restaurant.restaurantName)" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

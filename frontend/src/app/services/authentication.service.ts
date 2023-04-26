@@ -48,4 +48,9 @@ export class AuthenticationService {
   createAuthenticationToken(username: String, password: String) {
     return 'Basic ' + window.btoa(username + ":" + password);
   }
+
+  get currentVendor(): Vendor {
+    let id: Number = Number(sessionStorage.getItem("vendorId"));
+    return new Vendor(id, "","","","");
+  }
 }

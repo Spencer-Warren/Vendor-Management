@@ -12,6 +12,7 @@ import { DishComponent } from './vendor/dish/dish.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
 import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
+import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,9 +22,12 @@ const routes: Routes = [
   { path: 'vendor/home',       component: VendorHomeComponent},
   { path: 'vendor/login',      component: LoginComponent},
   { path: 'vendor/register',   component: RegisterComponent},
+
   { path: 'vendor/profile',    component: ProfileComponent},
   { path: 'vendor/profile/edit', component: ProfileEditComponent },
+  
   { path: 'vendor/restaurants', component: VendorRestaurantComponent},
+  { path: 'vendor/restaurants/create', component: RestaurantCreateComponent},
 
   { path: 'public',     component: PublicComponent},
   { path: 'restaurant', component: RestaurantComponent},

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vendor } from '../classes/vendor';
+import { Restaurant } from '../classes/restaurant';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class RESTAPIService {
     return this.http.post(this.url + "/register", user, this.httpOptions);
   }
 
-  getVendor(username: any) {
+  getVendor(username: any): Observable<any> {
     return this.http.get(this.url + "/vendor/" + username, this.httpOptions);
   }
 
@@ -40,5 +41,16 @@ export class RESTAPIService {
     return this.http.delete(this.url + "/delete/" + id, this.httpOptions);
   }
 
+  getAllRestaurants(id: any): Observable<any> {
+    return this.http.get(this.url + "/restaurant/" + id, this.httpOptions);
+  }
+
+  createRestaurant(restaurant: Restaurant): Observable<any> {
+    return this.http.post(this.url + "/restaurant", restaurant, this.httpOptions);
+  }
+
+  deleteRestaurant(id: Number){
+    return this.http.delete(this.url + "/restaurant/" + id, this.httpOptions);
+  }
 
 }

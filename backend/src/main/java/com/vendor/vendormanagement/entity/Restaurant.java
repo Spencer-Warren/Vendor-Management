@@ -1,9 +1,7 @@
 package com.vendor.vendormanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -12,9 +10,12 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int restaurantID;
     private String restaurantName;
-    private String restaurantLocation;
+    private String restaurantAddress;
     private String restaurantType;
     private String restaurantCategory;
+    private String restaurantDescription;
+    private String restaurantEmail;
+    private String restaurantPhone;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "vendorID")
@@ -27,25 +28,17 @@ public class Restaurant {
         restaurantID = 0;
         vendor = new Vendor();
         restaurantName = "";
-        restaurantLocation = "";
+        restaurantAddress = "";
         restaurantType = "";
         restaurantCategory = "";
     }
 
-    public int getResturantID() {
+    public int getRestaurantID() {
         return restaurantID;
     }
 
-    public void setResturantID(int resturantID) {
-        this.restaurantID = resturantID;
-    }
-
-    public Vendor getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
+    public void setRestaurantID(int restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     public String getRestaurantName() {
@@ -56,12 +49,12 @@ public class Restaurant {
         this.restaurantName = restaurantName;
     }
 
-    public String getRestaurantLocation() {
-        return restaurantLocation;
+    public String getRestaurantAddress() {
+        return restaurantAddress;
     }
 
-    public void setRestaurantLocation(String restaurantLocation) {
-        this.restaurantLocation = restaurantLocation;
+    public void setRestaurantAddress(String restaurantAddress) {
+        this.restaurantAddress = restaurantAddress;
     }
 
     public String getRestaurantType() {
@@ -80,15 +73,60 @@ public class Restaurant {
         this.restaurantCategory = restaurantCategory;
     }
 
+    public String getRestaurantDescription() {
+        return restaurantDescription;
+    }
+
+    public void setRestaurantDescription(String restaurantDescription) {
+        this.restaurantDescription = restaurantDescription;
+    }
+
+    public String getRestaurantEmail() {
+        return restaurantEmail;
+    }
+
+    public void setRestaurantEmail(String restaurantEmail) {
+        this.restaurantEmail = restaurantEmail;
+    }
+
+    public String getRestaurantPhone() {
+        return restaurantPhone;
+    }
+
+    public void setRestaurantPhone(String restaurantPhone) {
+        this.restaurantPhone = restaurantPhone;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public List<Dish> getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(List<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
     @Override
     public String toString() {
-        return "Resturant{" +
-                "resturantID=" + restaurantID +
+        return "Restaurant{" +
+                "restaurantID=" + restaurantID +
+                ", restaurantName='" + restaurantName + '\'' +
+                ", restaurantAddress='" + restaurantAddress + '\'' +
+                ", restaurantType='" + restaurantType + '\'' +
+                ", restaurantCategory='" + restaurantCategory + '\'' +
+                ", restaurantDescription='" + restaurantDescription + '\'' +
+                ", restaurantEmail='" + restaurantEmail + '\'' +
+                ", restaurantPhone='" + restaurantPhone + '\'' +
                 ", vendor=" + vendor +
-                ", resturantName='" + restaurantName + '\'' +
-                ", resturantLocation='" + restaurantLocation + '\'' +
-                ", resturantType='" + restaurantType + '\'' +
-                ", resturantCategory='" + restaurantCategory + '\'' +
+                ", dishes=" + dishes +
                 '}';
     }
 }
+

@@ -17,6 +17,7 @@ public class RestaurantController {
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
     public Restaurant newRestaurant(@RequestBody Restaurant restaurant) {
+        System.out.println(restaurant);
         return service.saveRestaurant(restaurant);
     }
 

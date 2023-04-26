@@ -1,0 +1,39 @@
+<div class="card m-5 w-80">
+    <div class="card-header">
+       <h1>Create a New Restaurant</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="restaurantName">Restaurant Name</label>
+                <input type="text" formControlName="restaurantName" class="form-control" id="restaurantName" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="restaurantAddress">Restaurant Address</label>
+                <input type="text" formControlName="restaurantAddress" class="form-control" id="restaurantAddress" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="restaurantPhone">Restaurant Phone</label>
+                <input type="text" formControlName="restaurantPhone" class="form-control" id="restaurantPhone" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <label for="restaurantEmail">Restaurant Email</label>
+                <input type="email" formControlName="restaurantEmail" class="form-control" id="restaurantEmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="restaurantDescription">Restaurant Description</label>
+                <input type="text" formControlName="restaurantDescription" class="form-control" id="restaurantDescription" placeholder="Description">
+            </div>
+            <div class="form-group">
+                <label for="restaurantType">Restaurant Type</label>
+                <input type="text" formControlName="restaurantType" class="form-control" id="restaurantType" placeholder="Type">
+            </div>
+            <div class="form-group">
+                <label for="restaurantCategory">Restaurant Category</label>
+                <input type="text" formControlName="restaurantCategory" class="form-control" id="restaurantCategory" placeholder="Category">
+            </div>
+
+            <button class="btn btn-primary mt-2" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

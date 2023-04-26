@@ -34,12 +34,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public String deleteRestaurant(int id) {
-        if (dao.findById(id).isPresent()) {
-            dao.deleteById(id);
-            licenseDao.deleteByRestaurant(id);
-            return "Deleted Restaurant with ID:" + id;
-        }
-        return "Restaurant with ID: " + id + " not found";
+        dao.deleteById(id);
+//        licenseDao.deleteByRestaurant(id);
+        return "Deleted Restaurant with ID:" + id;
     }
 
     @Override

@@ -20,6 +20,7 @@ import { ErrorInterceptor } from './services/errorInterceptor.service';
 import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
 import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
+import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.compone
     ProfileComponent,
     VendorRestaurantComponent,
     VendorHomeComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    RestaurantCreateComponent
   ],
   imports: [
     BrowserModule,
