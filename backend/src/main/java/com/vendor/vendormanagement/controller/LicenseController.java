@@ -17,13 +17,13 @@ public class LicenseController {
 
     @PostMapping("/{restaurantId}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public String newLicense(@RequestParam("file") MultipartFile license, @PathVariable int restaurantId) {
+    public ResponseEntity<String> newLicense(@RequestParam("file") MultipartFile license, @PathVariable int restaurantId) {
         return service.saveLicense(license, restaurantId);
     }
 
     @PutMapping("/{restaurantId}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public String updateLicense(@RequestParam("file") MultipartFile license, @PathVariable int restaurantId) {
+    public ResponseEntity<String> updateLicense(@RequestParam("file") MultipartFile license, @PathVariable int restaurantId) {
         return service.updateLicense(license, restaurantId);
     }
 
@@ -39,7 +39,7 @@ public class LicenseController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public String deleteLicense(@PathVariable int id) {
+    public ResponseEntity<String> deleteLicense(@PathVariable int id) {
         return service.deleteLicense(id);
     }
 

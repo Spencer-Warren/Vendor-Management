@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Restaurant } from 'src/app/classes/restaurant';
 import { Vendor } from 'src/app/classes/vendor';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RESTAPIService } from 'src/app/services/restapi.service';
@@ -33,9 +34,10 @@ export class RestaurantCreateComponent {
         restaurant.vendor = this.authService.currentVendor;
         this.restAPI.createRestaurant(restaurant)
         .subscribe(
-          (data: any) => {
+          (data: Restaurant) => {
             alert("Restaurant has been created!");
-            this.router.navigate(["/vendor/restaurants"]);
+            let id: number = data.restaurantID;
+            this.router.navigate(["/vendor/license-upload/" + id]);
           }
         );
       }

@@ -9,7 +9,7 @@ public class License {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int licenseID;
     @Lob
-    @Column(columnDefinition = "BLOB")
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] fileData;
     private String fileName;
     private String fileType;

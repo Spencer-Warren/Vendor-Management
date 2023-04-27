@@ -21,6 +21,17 @@ export class RESTAPIService {
     })
   }
 
+  httpOptionsFile = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+    })
+  }
+
+  get vednorID(): any {
+    return sessionStorage.getItem('vendorId');
+  }
+
   registerVendor(user: Vendor): Observable<any> {
     return this.http.post(this.url + "/register", user, this.httpOptions);
   }
@@ -41,6 +52,8 @@ export class RESTAPIService {
     return this.http.delete(this.url + "/delete/" + id, this.httpOptions);
   }
 
+
+
   getAllRestaurants(id: any): Observable<any> {
     return this.http.get(this.url + "/restaurant/" + id, this.httpOptions);
   }
@@ -49,8 +62,22 @@ export class RESTAPIService {
     return this.http.post(this.url + "/restaurant", restaurant, this.httpOptions);
   }
 
-  deleteRestaurant(id: Number){
+  deleteRestaurant(id: Number): Observable<any> {
     return this.http.delete(this.url + "/restaurant/" + id, this.httpOptions);
   }
+
+  getRestaurant(id: Number): Observable<any> {
+    return this.http.get(this.url + "/restaurant/" + this.vednorID + "/" + id, this.httpOptions);
+  }
+
+  updateRestaurant(restaurant: Restaurant): Observable<any> {
+    return this.http.put(this.url + "/restaurant", restaurant, this.httpOptions);
+  }
+
+  uploadLicense(license: any, id: string): Observable<any> {
+    console.log(license);
+    return this.http.post(this.url + "/license/" + id, license, this.httpOptionsFile);
+  }
+
 
 }

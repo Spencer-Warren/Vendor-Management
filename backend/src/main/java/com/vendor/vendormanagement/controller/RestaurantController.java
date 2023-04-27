@@ -17,14 +17,13 @@ public class RestaurantController {
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
     public Restaurant newRestaurant(@RequestBody Restaurant restaurant) {
-        System.out.println(restaurant);
         return service.saveRestaurant(restaurant);
     }
 
     @PutMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public Restaurant updateRestaurant(@RequestBody Restaurant restaurant) {
-        return service.updateRestaurant(restaurant);
+    public void updateRestaurant(@RequestBody Restaurant restaurant) {
+        service.updateRestaurant(restaurant);
     }
 
     @GetMapping("/{vendorId}")

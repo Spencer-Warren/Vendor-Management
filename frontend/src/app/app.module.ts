@@ -21,6 +21,8 @@ import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
 import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
 import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
+import { RestaurantEditComponent } from './vendor/restaurant/restaurant-edit/restaurant-edit.component';
+import { LicenseUploadComponent } from './vendor/license-upload/license-upload.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create
     VendorRestaurantComponent,
     VendorHomeComponent,
     ProfileEditComponent,
-    RestaurantCreateComponent
+    RestaurantCreateComponent,
+    RestaurantEditComponent,
+    LicenseUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,7 @@ import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
-  ],
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

@@ -2,7 +2,10 @@ package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.dao.LicenseDao;
 import com.vendor.vendormanagement.entity.License;
+import com.vendor.vendormanagement.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,10 +15,10 @@ public class LicenseServiceImpl implements LicenseService{
     LicenseDao dao;
 
     @Override
-    public String saveLicense(MultipartFile license, int restaurantId) {
+    public ResponseEntity<String> saveLicense(MultipartFile license, int restaurantId) {
         License newLicense = new License(license, restaurantId);
         dao.save(newLicense);
-        return "Saved License for Restaurant with ID: " + restaurantId;
+        return Response.response("Created License for Restaurant with ID: " + restaurantId, HttpStatus.CREATED);
     }
 
     @Override
@@ -24,21 +27,21 @@ public class LicenseServiceImpl implements LicenseService{
     }
 
     @Override
-    public String updateLicense(MultipartFile license, int restaurantId) {
+    public ResponseEntity<String> updateLicense(MultipartFile license, int restaurantId) {
         dao.save(new License(license, restaurantId));
-        return "Updated License for Restaurant with ID: " + restaurantId;
+        return Response.response("Updated License for Restaurant with ID: " + restaurantId, HttpStatus.OK);
     }
 
     @Override
-    public String deleteLicense(int id) {
+    public ResponseEntity<String> deleteLicense(int id) {
         dao.deleteById(id);
-        return "Deleted License with ID: " + id;
+        return Response.response("Deleted License with ID: " + id, HttpStatus.OK);
     }
 
     @Override
-    public String deleteLicenseByRestaurant(int restaurantId) {
+    public ResponseEntity<String> deleteLicenseByRestaurant(int restaurantId) {
         dao.deleteByRestaurant(restaurantId);
-        return "Deleted License for Restaurant with ID: " + restaurantId;
+        return Response.response("Deleted License for Restaurant with ID: " + restaurantId, HttpStatus.OK);
     }
 
 

@@ -13,9 +13,18 @@
                 <div class="card m-3">
                     <div class="card-header">
                         <h4>{{restaurant.restaurantName}}</h4>
+                        <p>{{restaurant.restaurantAddress}}</p>
                     </div>
                     <div class="card-body">
-                        <p>{{restaurant.restaurantDescription}}</p>
+                        <a (click)="toggleCollapse(restaurant.restaurantID)" class="btn btn-outline-primary me-2">Details</a>
+                        <div *ngIf="visable.get(restaurant.restaurantID)">
+                            <p>Address: {{restaurant.restaurantAddress}}</p>
+                            <p>Description: {{restaurant.restaurantDescription}}</p>
+                            <p>Phone: {{restaurant.restaurantPhone}}</p>
+                            <p>Email: {{restaurant.restaurantEmail}}</p>
+                            <p>Category: {{restaurant.restaurantCategory}}</p>
+                            <p>Type: {{restaurant.restaurantType}}</p>
+                        </div>
                         <a (click)="toEdit(restaurant.restaurantID)" class="btn btn-primary me-2">Edit</a>
                         <button (click)="delete(restaurant.restaurantID, restaurant.restaurantName)" class="btn btn-danger">Delete</button>
                     </div>

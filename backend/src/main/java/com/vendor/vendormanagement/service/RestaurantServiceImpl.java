@@ -28,8 +28,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant updateRestaurant(Restaurant restaurant) {
-        return dao.save(restaurant);
+    public void updateRestaurant(Restaurant restaurant) {
+        dao.updateRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantAddress(), restaurant.getRestaurantPhone(), restaurant.getRestaurantCategory(), restaurant.getRestaurantEmail(), restaurant.getRestaurantDescription(), restaurant.getRestaurantID());
     }
 
     @Override

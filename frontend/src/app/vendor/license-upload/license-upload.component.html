@@ -1,0 +1,13 @@
+<div class="card m-5 w-80">
+    <div class="card-header">
+       <h1>Upload Your food and safety license</h1>
+    </div>
+    <div class="card-body">
+        <p>A food and safety license is required
+            to sell food in the state of California. <br>
+            Please upload your license below.
+        </p>
+        <input (change)="onFileChange($event)" type="file" class="form-control file-upload" id="license" placeholder="License">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Upload</button>
+    </div>
+</div>

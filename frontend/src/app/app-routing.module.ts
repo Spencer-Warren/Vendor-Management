@@ -13,6 +13,8 @@ import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
 import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
 import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
+import { RestaurantEditComponent } from './vendor/restaurant/restaurant-edit/restaurant-edit.component';
+import { LicenseUploadComponent } from './vendor/license-upload/license-upload.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,11 +25,14 @@ const routes: Routes = [
   { path: 'vendor/login',      component: LoginComponent},
   { path: 'vendor/register',   component: RegisterComponent},
 
+  { path: 'vendor/license-upload/:id', component: LicenseUploadComponent},
+
   { path: 'vendor/profile',    component: ProfileComponent},
   { path: 'vendor/profile/edit', component: ProfileEditComponent },
   
   { path: 'vendor/restaurants', component: VendorRestaurantComponent},
   { path: 'vendor/restaurants/create', component: RestaurantCreateComponent},
+  { path: 'vendor/restaurants/edit/:id', component: RestaurantEditComponent},
 
   { path: 'public',     component: PublicComponent},
   { path: 'restaurant', component: RestaurantComponent},

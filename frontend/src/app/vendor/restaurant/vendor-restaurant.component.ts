@@ -11,6 +11,7 @@ import { RESTAPIService } from 'src/app/services/restapi.service';
 export class VendorRestaurantComponent {
 
   restaurants: Array<Restaurant> = [];
+  visable: Map<Number, Boolean> = new Map<Number, Boolean>();
 
   constructor(private RestAPI: RESTAPIService, private router: Router) { }
 
@@ -22,8 +23,18 @@ export class VendorRestaurantComponent {
     let id = sessionStorage.getItem("vendorId");
     this.RestAPI.getAllRestaurants(id).subscribe((data: any) => {
       this.restaurants = data;
-      console.log(this.restaurants);
+      for (let i = 0; i < this.restaurants.length; i++) {
+        this.visable.set(this.restaurants[i].restaurantID, false);
+      }
     });
+  }
+
+  toggleCollapse(id: Number) {
+    if (this.visable.get(id) == true) {
+      this.visable.set(id, false);
+    } else {
+      this.visable.set(id, true);
+    }
   }
   
   toCreate() {
@@ -37,7 +48,7 @@ export class VendorRestaurantComponent {
   delete(id: Number, name: String) {
     if (confirm("Are you sure you want to delete: " + name + "?" )) {
       this.RestAPI.deleteRestaurant(id).subscribe((data) => console.log(data));
-      this.router.navigate(['/vendor/restaurants']);
+      this.restaurants = this.restaurants.filter((restaurant) => restaurant.restaurantID != id);
       console.log(id + " : " + name);
     }
   }
