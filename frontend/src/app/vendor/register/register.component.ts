@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Vendor } from 'src/app/classes/vendor';
+import { Vendor } from 'src/app/models/vendor';
 import { RESTAPIService } from 'src/app/services/restapi.service';
 
 @Component({

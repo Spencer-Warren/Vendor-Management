@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RESTAPIService } from './restapi.service';
-import { Vendor } from '../classes/vendor';
+import { Vendor } from '../models/vendor';
 import { Router } from '@angular/router';
 
 @Injectable({

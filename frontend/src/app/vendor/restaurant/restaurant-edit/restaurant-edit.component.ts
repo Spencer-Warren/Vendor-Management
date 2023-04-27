@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Restaurant } from 'src/app/classes/restaurant';
+import { Restaurant } from 'src/app/models/restaurant';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RESTAPIService } from 'src/app/services/restapi.service';
 

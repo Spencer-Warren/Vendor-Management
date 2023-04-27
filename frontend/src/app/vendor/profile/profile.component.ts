@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Vendor } from 'src/app/classes/vendor';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RESTAPIService } from 'src/app/services/restapi.service';
 

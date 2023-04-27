@@ -1,28 +1,36 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { NavComponent } from './nav/nav.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HomeComponent } from './home/home.component';
 import { PublicComponent } from './home/public/public.component';
+import { RestaurantComponent } from './home/restaurant/restaurant.component';
+
 import { VendorComponent } from './vendor/vendor.component';
 import { LoginComponent } from './vendor/login/login.component';
 import { RegisterComponent } from './vendor/register/register.component';
-import { RestaurantComponent } from './home/restaurant/restaurant.component';
 import { DishComponent } from './vendor/dish/dish.component';
 import { ProfileComponent } from './vendor/profile/profile.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ErrorInterceptor } from './services/errorInterceptor.service';
-import { BasicAuthInterceptor } from './services/BasicAuthInterceptor.service';
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
-import { ProfileEditComponent } from './vendor/profile-edit/profile-edit.component';
+import { ProfileEditComponent } from './vendor/profile/profile-edit/profile-edit.component';
 import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
 import { RestaurantEditComponent } from './vendor/restaurant/restaurant-edit/restaurant-edit.component';
-import { LicenseUploadComponent } from './vendor/license-upload/license-upload.component';
+import { LicenseUploadComponent } from './vendor/license/license-upload/license-upload.component';
+import { LicenseViewComponent } from './vendor/license/license-view/license-view.component';
+
+
+import { ErrorInterceptor } from './services/errorInterceptor.service';
+import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +49,8 @@ import { LicenseUploadComponent } from './vendor/license-upload/license-upload.c
     ProfileEditComponent,
     RestaurantCreateComponent,
     RestaurantEditComponent,
-    LicenseUploadComponent
+    LicenseUploadComponent,
+    LicenseViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Vendor } from '../classes/vendor';
-import { Restaurant } from '../classes/restaurant';
+import { Vendor } from '../models/vendor';
+import { Restaurant } from '../models/restaurant';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +19,15 @@ export class RESTAPIService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
     })
-  }
+  };
 
   httpOptionsFile = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
     })
-  }
+  };
+
 
   get vednorID(): any {
     return sessionStorage.getItem('vendorId');
@@ -74,10 +75,14 @@ export class RESTAPIService {
     return this.http.put(this.url + "/restaurant", restaurant, this.httpOptions);
   }
 
+
+
   uploadLicense(license: any, id: string): Observable<any> {
     console.log(license);
     return this.http.post(this.url + "/license/" + id, license, this.httpOptionsFile);
   }
 
-
+  getLicense(id: string): Observable<any> {
+    return this.http.get(this.url + "/license/" + id, { responseType: 'blob'});
+  }
 }

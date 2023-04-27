@@ -22,8 +22,8 @@ public class LicenseServiceImpl implements LicenseService{
     }
 
     @Override
-    public License findByID(int id) {
-        return dao.findById(id).orElseGet(License::new);
+    public License findByID(int restaurantID) {
+        return dao.findByRestaurant(restaurantID);
     }
 
     @Override

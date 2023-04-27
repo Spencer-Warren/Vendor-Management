@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Restaurant } from 'src/app/classes/restaurant';
+import { Restaurant } from 'src/app/models/restaurant';
 import { RESTAPIService } from 'src/app/services/restapi.service';
 
 @Component({
@@ -43,6 +43,10 @@ export class VendorRestaurantComponent {
 
   toEdit(id: Number) {
     this.router.navigate(['/vendor/restaurants/edit/' + id]);
+  }
+
+  toLicense(id: Number) {
+    this.router.navigate(['/vendor/license-view/' + id]);
   }
 
   delete(id: Number, name: String) {

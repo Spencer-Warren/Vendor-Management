@@ -24,6 +24,7 @@
                             <p>Email: {{restaurant.restaurantEmail}}</p>
                             <p>Category: {{restaurant.restaurantCategory}}</p>
                             <p>Type: {{restaurant.restaurantType}}</p>
+                            <a (click)="toLicense(restaurant.restaurantID)" class="btn btn-outline-primary mb-2">View License</a>
                         </div>
                         <a (click)="toEdit(restaurant.restaurantID)" class="btn btn-primary me-2">Edit</a>
                         <button (click)="delete(restaurant.restaurantID, restaurant.restaurantName)" class="btn btn-danger">Delete</button>

@@ -9,6 +9,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Blob;
+
 @RestController
 @RequestMapping("/api/license")
 public class LicenseController {
@@ -30,11 +32,13 @@ public class LicenseController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
     public ResponseEntity<byte[]> getLicense(@PathVariable int id) {
-        MediaType mediaType = MediaType.valueOf(service.findByID(id).getFileType());
+        License license =  service.findByID(id);
+        MediaType mediaType = MediaType.valueOf(license.getFileType());
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .body(service.findByID(id).getFileData());
+                .header("Content-Disposition", "filename=\"" + license.getFileName() + "\"")
+                .body(license.getFileData());
     }
 
     @DeleteMapping("/{id}")
