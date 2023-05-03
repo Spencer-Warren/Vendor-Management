@@ -68,4 +68,8 @@ export class RestaurantEditComponent {
       );
     }
   }
+
+  onBack() {
+    this.router.navigate(["/vendor/restaurants"]);
+  }
 }

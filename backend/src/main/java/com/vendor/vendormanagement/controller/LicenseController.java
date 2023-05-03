@@ -3,6 +3,7 @@ package com.vendor.vendormanagement.controller;
 import com.vendor.vendormanagement.entity.License;
 import com.vendor.vendormanagement.service.LicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,6 +39,7 @@ public class LicenseController {
         return ResponseEntity.ok()
                 .contentType(mediaType)
                 .header("Content-Disposition", "filename=\"" + license.getFileName() + "\"")
+                .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION)
                 .body(license.getFileData());
     }
 

@@ -11,7 +11,7 @@ import { RESTAPIService } from 'src/app/services/restapi.service';
 export class VendorRestaurantComponent {
 
   restaurants: Array<Restaurant> = [];
-  visable: Map<Number, Boolean> = new Map<Number, Boolean>();
+  visible: Map<Number, Boolean> = new Map<Number, Boolean>();
 
   constructor(private RestAPI: RESTAPIService, private router: Router) { }
 
@@ -24,16 +24,16 @@ export class VendorRestaurantComponent {
     this.RestAPI.getAllRestaurants(id).subscribe((data: any) => {
       this.restaurants = data;
       for (let i = 0; i < this.restaurants.length; i++) {
-        this.visable.set(this.restaurants[i].restaurantID, false);
+        this.visible.set(this.restaurants[i].restaurantID, false);
       }
     });
   }
 
   toggleCollapse(id: Number) {
-    if (this.visable.get(id) == true) {
-      this.visable.set(id, false);
+    if (this.visible.get(id) == true) {
+      this.visible.set(id, false);
     } else {
-      this.visable.set(id, true);
+      this.visible.set(id, true);
     }
   }
   

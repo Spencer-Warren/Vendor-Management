@@ -5,14 +5,14 @@
     <div class="card-body">
     
     <div *ngIf="isImage()">
-        <img [src]="license" class="img-fluid" alt="license image">
+        <img [src]="license" download="" class="img-fluid" alt="license image">
     </div>
 
     <div *ngIf="isPDF()">
-        <iframe [src]="license" width="100%" height="600px"></iframe>
+        <object [data]="license" width="100%" height="600px"></object>
     </div>
 
-    <button class="btn btn-primary me-2" (click)="onDownload()">Download</button>
+    <a class="btn btn-primary me-2" (click)="onDownload()">Download</a>
     <button class="btn btn-primary me-2" (click)="onBack()">Back</button>
     <button class="btn btn-primary me-2" (click)="onEdit()">Edit</button>
     </div>  

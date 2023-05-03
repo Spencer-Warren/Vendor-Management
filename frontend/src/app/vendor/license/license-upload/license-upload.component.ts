@@ -24,7 +24,7 @@ export class LicenseUploadComponent {
       let formData = new FormData();
       formData.append('file', this.file);
       this.restAPI.uploadLicense(formData, id).subscribe((data: any) => {
-        this.router.navigate(['/vendor']);
+        this.router.navigate(['/vendor/home']);
       });
     }
 }

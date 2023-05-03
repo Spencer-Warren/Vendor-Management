@@ -83,6 +83,6 @@ export class RESTAPIService {
   }
 
   getLicense(id: string): Observable<any> {
-    return this.http.get(this.url + "/license/" + id, { responseType: 'blob'});
+    return this.http.get(this.url + "/license/" + id, { observe: 'response', responseType: 'blob'});
   }
 }

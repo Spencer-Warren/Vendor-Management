@@ -17,6 +17,9 @@ public class LicenseServiceImpl implements LicenseService{
     @Override
     public ResponseEntity<String> saveLicense(MultipartFile license, int restaurantId) {
         License newLicense = new License(license, restaurantId);
+        if (dao.findByRestaurant(restaurantId) != null) {
+            return updateLicense(license, restaurantId);
+        }
         dao.save(newLicense);
         return Response.response("Created License for Restaurant with ID: " + restaurantId, HttpStatus.CREATED);
     }
@@ -28,6 +31,7 @@ public class LicenseServiceImpl implements LicenseService{
 
     @Override
     public ResponseEntity<String> updateLicense(MultipartFile license, int restaurantId) {
+        dao.deleteByRestaurant(restaurantId);
         dao.save(new License(license, restaurantId));
         return Response.response("Updated License for Restaurant with ID: " + restaurantId, HttpStatus.OK);
     }
