@@ -7,3 +7,12 @@ img {
     box-shadow: 0 0 5px #ccc;
     margin: 10px;
 }
+
+object {
+    width: 90%;
+    height: 75vh;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+    margin: 10px;
+}

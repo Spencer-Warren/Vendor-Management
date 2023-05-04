@@ -9,7 +9,7 @@
     </div>
 
     <div *ngIf="isPDF()">
-        <object [data]="license" width="100%" height="600px"></object>
+        <object [data]="license"></object>
     </div>
 
     <a class="btn btn-primary me-2" (click)="onDownload()">Download</a>
