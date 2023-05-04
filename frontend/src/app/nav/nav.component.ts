@@ -13,21 +13,28 @@ export class NavComponent {
   constructor(private router: Router, private authservice: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe((val) => {
-      if (this.router.url.match(/\/vendor\/.*/)) {
-        if (sessionStorage.getItem("vendorId") != null) {
-          this.setNavState(navStates.vendorLoggedIn);
-        }
-        else {
-          this.setNavState(navStates.vendor);
-        }
-      }
-      else if (this.router.url == "/public") {
-        this.setNavState(navStates.public);
-      }
+    this.updateNavState();
+    this.router.events.subscribe((val) => this.updateNavState());
+  }
 
+  updateNavState() {
+    if (this.router.url.match(/\/vendor\/.*/)) {
+      if (sessionStorage.getItem("vendorId") != null) {
+        this.setNavState(navStates.vendorLoggedIn);
+      }
+      else {
+        this.setNavState(navStates.vendor);
+      }
     }
-    );
+    else if (this.router.url == "/vendor") {
+      this.setNavState(navStates.vendor);
+    }
+    else if (this.router.url == "/home") {
+      this.setNavState(navStates.home);
+    }
+    else if (this.router.url == "/public") {
+      this.setNavState(navStates.public);
+    }
   }
 
   logout() {
