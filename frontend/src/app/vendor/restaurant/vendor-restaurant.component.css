@@ -2,4 +2,13 @@
 
 .inline {
     display: inline;
+    margin: 2px;
+}
+
+@media (max-width: 1200) {
+    .inline {
+        display: block;
+        background-color: aliceblue;
+        margin: 2px;
+    }
 }

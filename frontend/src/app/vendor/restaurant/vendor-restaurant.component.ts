@@ -49,6 +49,10 @@ export class VendorRestaurantComponent {
     this.router.navigate(['/vendor/license-view/' + id]);
   }
 
+  toDishes(id: Number) {
+    this.router.navigate(['/vendor/restaurants/' + id + '/dishes']);
+  }
+
   delete(id: Number, name: String) {
     if (confirm("Are you sure you want to delete: " + name + "?" )) {
       this.RestAPI.deleteRestaurant(id).subscribe((data) => console.log(data));
