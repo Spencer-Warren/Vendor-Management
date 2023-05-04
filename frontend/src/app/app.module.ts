@@ -17,19 +17,20 @@ import { RestaurantComponent } from './home/restaurant/restaurant.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { LoginComponent } from './vendor/login/login.component';
 import { RegisterComponent } from './vendor/register/register.component';
-import { DishComponent } from './vendor/dish/dish.component';
 import { ProfileComponent } from './vendor/profile/profile.component';
 import { VendorRestaurantComponent } from './vendor/restaurant/vendor-restaurant.component';
 import { VendorHomeComponent } from './vendor/home/vendor-home.component';
 import { ProfileEditComponent } from './vendor/profile/profile-edit/profile-edit.component';
 import { RestaurantCreateComponent } from './vendor/restaurant/restaurant-create/restaurant-create.component';
 import { RestaurantEditComponent } from './vendor/restaurant/restaurant-edit/restaurant-edit.component';
+
 import { LicenseUploadComponent } from './vendor/license/license-upload/license-upload.component';
 import { LicenseViewComponent } from './vendor/license/license-view/license-view.component';
 
 
 import { ErrorInterceptor } from './services/errorInterceptor.service';
 import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
+import { VendorDishesComponent } from './vendor/dishes/vendor-dishes/vendor-dishes.component';
 
 
 @NgModule({
@@ -42,7 +43,6 @@ import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
     LoginComponent,
     RegisterComponent,
     RestaurantComponent,
-    DishComponent,
     ProfileComponent,
     VendorRestaurantComponent,
     VendorHomeComponent,
@@ -50,7 +50,8 @@ import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
     RestaurantCreateComponent,
     RestaurantEditComponent,
     LicenseUploadComponent,
-    LicenseViewComponent
+    LicenseViewComponent,
+    VendorDishesComponent
   ],
   imports: [
     BrowserModule,

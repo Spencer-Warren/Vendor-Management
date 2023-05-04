@@ -1,4 +1,5 @@
 import { Component, Injectable } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component, Injectable } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  constructor(private auth : AuthenticationService) { }
+  ngOnInit() {
+    
+  }
 }
