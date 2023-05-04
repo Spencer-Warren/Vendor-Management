@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.authService.authenticate(loginUser).subscribe(
         (data: any) => {
           if (data.vendorId != 0) {
-            let newVendor: Vendor = new Vendor(data.vendorId, data.vendorName, data.vendorEmail, data.vendorUsername, loginUser.vendorPassword);
+            let newVendor: Vendor = new Vendor(data.vendorId, data.vendorName, data.vendorEmail, data.username, loginUser.vendorPassword);
             this.authService.success(newVendor);
             this.router.navigate(['vendor/home']);
           }
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   get username() {
     return this.loginForm.get('username');
   }
@@ -47,5 +46,4 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-
 }
