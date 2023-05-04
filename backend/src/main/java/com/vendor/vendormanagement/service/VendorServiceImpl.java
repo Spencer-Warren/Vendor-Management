@@ -36,7 +36,7 @@ public class VendorServiceImpl implements VendorService{
     @Override
     public ResponseEntity<String> updateVendor(Vendor vendor) {
         System.out.println(vendor);
-        dao.updateVendor(vendor.getVendorName(), vendor.getVendorUsername(), vendor.getVendorEmail(), vendor.getVendorID());
+        dao.updateVendor(vendor.getVendorName(), vendor.getUsername(), vendor.getVendorEmail(), vendor.getVendorID());
         return ResponseEntity.ok("Updated Vendor with ID:" + vendor.getVendorID());
     }
 

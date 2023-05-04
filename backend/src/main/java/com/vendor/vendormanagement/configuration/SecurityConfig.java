@@ -1,7 +1,6 @@
 package com.vendor.vendormanagement.configuration;
 
 import com.vendor.vendormanagement.service.VendorDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -14,9 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-    @Autowired
-    private VendorDetailsService vendorDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
@@ -36,7 +32,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider(VendorDetailsService vendorDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(vendorDetailsService);
         provider.setPasswordEncoder(passwordEncoder());

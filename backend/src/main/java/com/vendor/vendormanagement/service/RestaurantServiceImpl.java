@@ -2,7 +2,6 @@ package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.dao.LicenseDao;
 import com.vendor.vendormanagement.dao.RestaurantDao;
-import com.vendor.vendormanagement.entity.License;
 import com.vendor.vendormanagement.entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public String deleteRestaurant(int id) {
         dao.deleteById(id);
-//        licenseDao.deleteByRestaurant(id);
         return "Deleted Restaurant with ID:" + id;
     }
 

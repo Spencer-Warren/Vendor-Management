@@ -46,14 +46,6 @@ public class Vendor implements UserDetails {
         this.vendorUsername = username;
     }
 
-    public String getVendorUsername() {
-        return vendorUsername;
-    }
-
-    public String getVendorPassword() {
-        return vendorPassword;
-    }
-
     public void setVendorPassword(String password) {
         this.vendorPassword = password;
     }
