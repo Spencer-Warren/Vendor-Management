@@ -31,6 +31,7 @@ import { LicenseViewComponent } from './vendor/license/license-view/license-view
 import { ErrorInterceptor } from './services/errorInterceptor.service';
 import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
 import { VendorDishesComponent } from './vendor/dishes/vendor-dishes/vendor-dishes.component';
+import { DishCreateComponent } from './vendor/dishes/dish-create/dish-create.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { VendorDishesComponent } from './vendor/dishes/vendor-dishes/vendor-dish
     RestaurantEditComponent,
     LicenseUploadComponent,
     LicenseViewComponent,
-    VendorDishesComponent
+    VendorDishesComponent,
+    DishCreateComponent
   ],
   imports: [
     BrowserModule,

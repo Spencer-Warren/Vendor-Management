@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vendor } from '../models/vendor';
 import { Restaurant } from '../models/restaurant';
+import { Dish } from '../models/dish';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +85,14 @@ export class RESTAPIService {
 
   getLicense(id: string): Observable<any> {
     return this.http.get(this.url + "/license/" + id, { observe: 'response', responseType: 'blob'});
+  }
+
+
+  getDishes(restaurantID: number): Observable<any> {
+    return this.http.get(this.url + "/dish/" + restaurantID, this.httpOptions);
+  }
+
+  createDish(dish: Dish): Observable<any> {
+    return this.http.post(this.url + "/dish", dish, this.httpOptions);
   }
 }

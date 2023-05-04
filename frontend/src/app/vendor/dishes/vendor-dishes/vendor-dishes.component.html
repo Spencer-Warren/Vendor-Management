@@ -1,8 +1,28 @@
 <div class="card m-5 w-90">
     <div class="card-header">
-        <h3>Your Restaurants</h3>
+        <div *ngIf="restaurant!=null">
+            <h3>{{restaurant.restaurantName}}</h3>
+        </div>
     </div>
     <div class="card-body">
-    
+        <button class="btn btn-primary" (click)="toCreate()">Create a Dish</button>
+        <div *ngIf="dishes == null || dishes.length == 0" class="m-3">
+            No dishes found... <br>
+            you can create one using the button above.
+        </div>
+        <div *ngIf="dishes != null && dishes.length != 0" class="row">
+            <div *ngFor="let dish of dishes" class="col-4">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <h4>{{dish.dishName}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Price: {{dish.dishPrice}}</p>
+                        <p>Category: {{dish.dishCategory}}</p>
+                        <p>Description: {{dish.dishDescription}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>  
+</div>

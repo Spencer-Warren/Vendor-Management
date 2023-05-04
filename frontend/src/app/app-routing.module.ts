@@ -21,6 +21,7 @@ import { RestaurantEditComponent }   from './vendor/restaurant/restaurant-edit/r
 import { LicenseUploadComponent }    from './vendor/license/license-upload/license-upload.component';
 import { LicenseViewComponent } from './vendor/license/license-view/license-view.component';
 import { VendorDishesComponent } from './vendor/dishes/vendor-dishes/vendor-dishes.component';
+import { DishCreateComponent } from './vendor/dishes/dish-create/dish-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'vendor/restaurants/edit/:id', component: RestaurantEditComponent},
 
   { path: 'vendor/restaurants/:id/dishes', component: VendorDishesComponent},
+  { path: 'vendor/restaurants/:id/dishes/create', component: DishCreateComponent},
 
   { path: 'public',     component: PublicComponent},
   { path: 'restaurant', component: RestaurantComponent},
