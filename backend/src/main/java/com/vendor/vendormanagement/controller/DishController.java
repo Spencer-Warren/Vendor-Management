@@ -37,7 +37,7 @@ public class DishController {
         return service.findByRestaurantAndId(restaurantId, dishId);
     }
 
-    @DeleteMapping("/{restaurantId}")
+    @DeleteMapping("/{dishId}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
     public String deleteDish(@PathVariable int dishId) {
         return service.deleteDish(dishId);

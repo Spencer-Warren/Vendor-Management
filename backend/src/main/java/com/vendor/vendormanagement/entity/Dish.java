@@ -9,6 +9,7 @@ public class Dish {
     private int dishID;
     private String dishName;
     private double dishPrice;
+    @Column(length = 1024)
     private String dishDescription;
     private String dishCategory;
     @ManyToOne(cascade = CascadeType.MERGE)

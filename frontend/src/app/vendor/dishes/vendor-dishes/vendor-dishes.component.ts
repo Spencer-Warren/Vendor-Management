@@ -39,4 +39,16 @@ export class VendorDishesComponent {
   toCreate() {
     this.router.navigate(['/vendor/restaurants/' + this.restaurant.restaurantID + '/dishes/create']);
   }
+
+  toEdit(dish: Dish) {
+    this.router.navigate(['/vendor/restaurants/' + this.restaurant.restaurantID + '/dishes/edit/' + dish.dishID]);
+  }
+
+  toDelete(dish: Dish) {
+    console.log(dish);
+    if (confirm("Are you sure you want to delete: " + dish.dishName + "?" )) {
+      this.restAPI.deleteDish(dish.dishID).subscribe((data) => console.log(data));
+      this.getDishes();
+    }
+  }
 }

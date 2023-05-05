@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-vendor-restaurant',
@@ -13,7 +14,7 @@ export class VendorRestaurantComponent {
   restaurants: Array<Restaurant> = [];
   visible: Map<Number, Boolean> = new Map<Number, Boolean>();
 
-  constructor(private RestAPI: RESTAPIService, private router: Router) { }
+  constructor(private RestAPI: RESTAPIService, private router: Router, private restaurantService: RestaurantsService) { }
 
   ngOnInit(): void {
     this.getAllRestaurants();
@@ -49,8 +50,9 @@ export class VendorRestaurantComponent {
     this.router.navigate(['/vendor/license-view/' + id]);
   }
 
-  toDishes(id: Number) {
-    this.router.navigate(['/vendor/restaurants/' + id + '/dishes']);
+  toDishes(restaurant: Restaurant) {
+    this.restaurantService.setRestaurant(restaurant);
+    this.router.navigate(['/vendor/restaurants/' + restaurant.restaurantID + '/dishes']);
   }
 
   delete(id: Number, name: String) {

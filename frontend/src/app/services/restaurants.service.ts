@@ -10,9 +10,20 @@ import { AuthenticationService } from './authentication.service';
 })
 export class RestaurantsService {
 
-  private restaurants!: Restaurant[]; // Array of restaurants
+  private restaurants!: Restaurant[]; // Array of restaurants'
+  private currentRestaurant!: Restaurant; // Current restaurant
 
   constructor(private restAPI: RESTAPIService, private authService: AuthenticationService) { }
+
+  // Get current restaurant
+  getCurrentRestaurant(): Restaurant {
+    return this.currentRestaurant;  
+  }
+
+  // Set current restaurant
+  setRestaurant(restaurant: Restaurant) {
+    this.currentRestaurant = restaurant;
+  }
 
   // Get all restaurants
   getRestaurants(): Restaurant[] {

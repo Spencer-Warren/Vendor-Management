@@ -11,15 +11,17 @@
             you can create one using the button above.
         </div>
         <div *ngIf="dishes != null && dishes.length != 0" class="row">
-            <div *ngFor="let dish of dishes" class="col-4">
+            <div *ngFor="let dish of dishes" class="col-3">
                 <div class="card m-3">
                     <div class="card-header">
                         <h4>{{dish.dishName}}</h4>
                     </div>
                     <div class="card-body">
-                        <p>Price: {{dish.dishPrice}}</p>
+                        <p>Price: ${{dish.dishPrice}}</p>
                         <p>Category: {{dish.dishCategory}}</p>
-                        <p>Description: {{dish.dishDescription}}</p>
+                        <p>Description:</p><p>{{dish.dishDescription}}</p>
+                        <button (click)="toEdit(dish)" class="btn btn-primary me-2">Edit</button>
+                        <button (click)="toDelete(dish)" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
