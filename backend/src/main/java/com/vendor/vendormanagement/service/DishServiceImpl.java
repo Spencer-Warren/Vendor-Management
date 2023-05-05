@@ -27,8 +27,9 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public ResponseEntity<Dish> updateDish(Dish dish) {
-        return Response.of(dao.save(dish));
+    public ResponseEntity<String> updateDish(Dish dish) {
+        dao.updateDish(dish.getDishName(), dish.getDishPrice(), dish.getDishDescription(), dish.getDishCategory(), dish.getDishID());
+        return Response.of("Dish updated successfully");
     }
 
     @Override

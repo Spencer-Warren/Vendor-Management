@@ -23,7 +23,7 @@ public class DishController {
 
     @PutMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public ResponseEntity<Dish> updateDish(@RequestBody Dish dish) {
+    public ResponseEntity<String> updateDish(@RequestBody Dish dish) {
         return service.updateDish(dish);
     }
 

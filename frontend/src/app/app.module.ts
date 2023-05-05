@@ -32,7 +32,7 @@ import { ErrorInterceptor } from './services/errorInterceptor.service';
 import { BasicAuthInterceptor } from './services/basicAuthInterceptor.service';
 import { VendorDishesComponent } from './vendor/dishes/vendor-dishes/vendor-dishes.component';
 import { DishCreateComponent } from './vendor/dishes/dish-create/dish-create.component';
-import { DishEditComponent } from './dish-edit/dish-edit.component';
+import { DishEditComponent } from './vendor/dishes/dish-edit/dish-edit.component';
 
 
 @NgModule({

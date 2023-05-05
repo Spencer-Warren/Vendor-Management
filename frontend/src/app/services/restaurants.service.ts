@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Restaurant } from '../models/restaurant';
 import { RESTAPIService } from './restapi.service';
 import { AuthenticationService } from './authentication.service';
+import { Dish } from '../models/dish';
+import { BehaviorSubject, Observable, Subject, firstValueFrom } from 'rxjs';
 
 
 
@@ -10,8 +12,9 @@ import { AuthenticationService } from './authentication.service';
 })
 export class RestaurantsService {
 
-  private restaurants!: Restaurant[]; // Array of restaurants'
+  private restaurants!: Array<Restaurant>; // Array of restaurants
   private currentRestaurant!: Restaurant; // Current restaurant
+  private currentDish!: Dish; // Current dish
 
   constructor(private restAPI: RESTAPIService, private authService: AuthenticationService) { }
 
@@ -21,27 +24,30 @@ export class RestaurantsService {
   }
 
   // Set current restaurant
-  setRestaurant(restaurant: Restaurant) {
+  setCurrentRestaurant(restaurant: Restaurant) {
     this.currentRestaurant = restaurant;
   }
 
+  getCurrentDish(): Dish {
+    return this.currentDish;
+  }
+
+  setCurrentDish(dish: Dish) {
+    this.currentDish = dish;
+  }
+
+
   // Get all restaurants
-  getRestaurants(): Restaurant[] {
+  async getRestaurants(): Promise<Array<Restaurant>> {
+    if (this.restaurants == null) {
+      this.restaurants = await firstValueFrom(this.refetchRestaurants());
+    }
     return this.restaurants;
   }
 
-  // Get a restaurant by ID
-  getRestaurant(id: number): Restaurant {
-    return this.restaurants.find(restaurant => restaurant.restaurantID == id)!;
-  }
-
-  refetchRestaurants() {
+  refetchRestaurants(): Observable<Restaurant[]> {
     let id = sessionStorage.getItem("vendorId");
-    this.restAPI.getAllRestaurants(id)
-    .subscribe(
-      (data: Restaurant[]) => {
-        this.restaurants = data;
-      }
-    );
+    return this.restAPI.getAllRestaurants(id);
   }
+  
 }

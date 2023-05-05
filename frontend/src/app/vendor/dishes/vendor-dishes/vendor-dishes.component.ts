@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Dish } from 'src/app/models/dish';
 import { Restaurant } from 'src/app/models/restaurant';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-vendor-dishes',
@@ -14,21 +15,9 @@ export class VendorDishesComponent {
   restaurant!: Restaurant;
   dishes!: Dish[];
 
-  constructor(private restAPI: RESTAPIService, private router: Router) {this.getRestaurant();}
-  
-  
-
-  ngOnInit(): void {
-  }
-
-  getRestaurant() {
-    // Get the restaurant ID from the URL
-    let id: Number = parseInt(this.router.url.split('/')[3]);
-    // Get the restaurant from the REST API
-    this.restAPI.getRestaurant(id).subscribe((data: any) => {
-      this.restaurant = data;
-      this.getDishes();
-    });
+  constructor(private restAPI: RESTAPIService, private router: Router, private restaurantService: RestaurantsService) {
+    this.restaurant = this.restaurantService.getCurrentRestaurant();
+    this.getDishes();
   }
 
   getDishes() {
@@ -38,18 +27,22 @@ export class VendorDishesComponent {
   }
 
   toCreate() {
-    this.router.navigate(['/vendor/restaurants/' + this.restaurant.restaurantID + '/dishes/create']);
+    this.router.navigate(['/vendor/restaurants/dishes/create']);
   }
 
   toEdit(dish: Dish) {
-    this.router.navigate(['/vendor/restaurants/' + this.restaurant.restaurantID + '/dishes/edit/' + dish.dishID]);
+    this.restaurantService.setCurrentDish(dish);
+    this.router.navigate(['/vendor/restaurants/dishes/edit']);
   }
 
   toDelete(dish: Dish) {
     console.log(dish);
-    if (confirm("Are you sure you want to delete: " + dish.dishName + "?" )) {
-      this.restAPI.deleteDish(dish.dishID).subscribe((data: HttpResponse<any>) => console.log(data.body)
-      );
+    if (confirm("Are you sure you want to delete: " + dish.dishName + "?")) {
+      this.restAPI.deleteDish(dish.dishID)
+        .subscribe(
+          (data: HttpResponse<any>) =>
+            console.log(data.body)
+        );
       this.getDishes();
     }
   }

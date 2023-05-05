@@ -11,7 +11,7 @@ import { RestaurantsService } from 'src/app/services/restaurants.service';
 })
 export class VendorRestaurantComponent {
 
-  restaurants: Array<Restaurant> = [];
+  restaurants: Restaurant[] = [];
   visible: Map<Number, Boolean> = new Map<Number, Boolean>();
 
   constructor(private RestAPI: RESTAPIService, private router: Router, private restaurantService: RestaurantsService) { }
@@ -20,14 +20,12 @@ export class VendorRestaurantComponent {
     this.getAllRestaurants();
   }
 
-  getAllRestaurants() {
-    let id = sessionStorage.getItem("vendorId");
-    this.RestAPI.getAllRestaurants(id).subscribe((data: any) => {
-      this.restaurants = data;
+  async getAllRestaurants() {
+    this.restaurants = await this.restaurantService.getRestaurants();
+      console.log(this.restaurants);
       for (let i = 0; i < this.restaurants.length; i++) {
         this.visible.set(this.restaurants[i].restaurantID, false);
       }
-    });
   }
 
   toggleCollapse(id: Number) {
@@ -51,8 +49,8 @@ export class VendorRestaurantComponent {
   }
 
   toDishes(restaurant: Restaurant) {
-    this.restaurantService.setRestaurant(restaurant);
-    this.router.navigate(['/vendor/restaurants/' + restaurant.restaurantID + '/dishes']);
+    this.restaurantService.setCurrentRestaurant(restaurant);
+    this.router.navigate(['/vendor/restaurants/dishes']);
   }
 
   delete(id: Number, name: String) {

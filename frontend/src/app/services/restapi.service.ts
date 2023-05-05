@@ -99,5 +99,9 @@ export class RESTAPIService {
   deleteDish(id: Number): Observable<any> {
     return this.http.delete(this.url + "/dish/" + id, this.httpOptions);
   }
+
+  updateDish(dish: Dish): Observable<any> {
+    return this.http.put(this.url + "/dish", dish, this.httpOptions);
+  }
   
 }
