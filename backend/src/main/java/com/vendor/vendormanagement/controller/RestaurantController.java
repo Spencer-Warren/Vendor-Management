@@ -3,6 +3,7 @@ package com.vendor.vendormanagement.controller;
 import com.vendor.vendormanagement.entity.Restaurant;
 import com.vendor.vendormanagement.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +17,14 @@ public class RestaurantController {
 
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public Restaurant newRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> newRestaurant(@RequestBody Restaurant restaurant) {
         return service.saveRestaurant(restaurant);
     }
 
     @PutMapping("")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public void updateRestaurant(@RequestBody Restaurant restaurant) {
-        service.updateRestaurant(restaurant);
+    public ResponseEntity<String> updateRestaurant(@RequestBody Restaurant restaurant) {
+        return service.updateRestaurant(restaurant);
     }
 
     @GetMapping("/{vendorId}")
@@ -38,7 +39,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{restaurantId}")
-    public String deleteRestaurant(@PathVariable int restaurantId) {
+    public ResponseEntity<String> deleteRestaurant(@PathVariable int restaurantId) {
         return service.deleteRestaurant(restaurantId);
     }
 }

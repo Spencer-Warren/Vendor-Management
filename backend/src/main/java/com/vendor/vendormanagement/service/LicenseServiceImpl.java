@@ -21,31 +21,26 @@ public class LicenseServiceImpl implements LicenseService{
             return updateLicense(license, restaurantId);
         }
         dao.save(newLicense);
-        return Response.response("Created License for Restaurant with ID: " + restaurantId, HttpStatus.CREATED);
-    }
-
-    @Override
-    public License findByID(int restaurantID) {
-        return dao.findByRestaurant(restaurantID);
+        return Response.of("Created License for Restaurant with ID: " + restaurantId, HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<String> updateLicense(MultipartFile license, int restaurantId) {
         dao.deleteByRestaurant(restaurantId);
         dao.save(new License(license, restaurantId));
-        return Response.response("Updated License for Restaurant with ID: " + restaurantId, HttpStatus.OK);
+        return Response.of("Updated License for Restaurant with ID: " + restaurantId);
     }
 
     @Override
     public ResponseEntity<String> deleteLicense(int id) {
         dao.deleteById(id);
-        return Response.response("Deleted License with ID: " + id, HttpStatus.OK);
+        return Response.of("Deleted License with ID: " + id);
     }
 
     @Override
     public ResponseEntity<String> deleteLicenseByRestaurant(int restaurantId) {
         dao.deleteByRestaurant(restaurantId);
-        return Response.response("Deleted License for Restaurant with ID: " + restaurantId, HttpStatus.OK);
+        return Response.of("Deleted License for Restaurant with ID: " + restaurantId);
     }
 
 

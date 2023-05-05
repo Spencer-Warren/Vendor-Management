@@ -9,8 +9,11 @@ public class Response {
         throw new IllegalStateException("Utility class");
     }
 
-    public static ResponseEntity<String> response(String message, HttpStatus status) {
-        message = "{\"response\": \"" + message + "\"}";
-        return ResponseEntity.status(status).body(message);
+    public static <T> ResponseEntity<T> of(T body, HttpStatus status) {
+        return ResponseEntity.status(status).body(body);
+    }
+
+    public static <T> ResponseEntity<T> of(T body) {
+        return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 }

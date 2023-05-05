@@ -1,13 +1,14 @@
 package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.entity.Dish;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface DishService {
-    public Dish saveDish(Dish dish);
-    public Dish findByRestaurantAndId(int restaurantId, int id);
-    public Dish updateDish(Dish dish);
-    public String deleteDish(int id);
-    public List<Dish> findAllByRestaurant(int restaurantId);
+    public ResponseEntity<Dish> saveDish(Dish dish);
+    public ResponseEntity<Dish> findByRestaurantAndId(int restaurantId, int id);
+    public ResponseEntity<Dish> updateDish(Dish dish);
+    public ResponseEntity<String> deleteDish(int id);
+    public ResponseEntity<List<Dish>> findAllByRestaurant(int restaurantId);
 }

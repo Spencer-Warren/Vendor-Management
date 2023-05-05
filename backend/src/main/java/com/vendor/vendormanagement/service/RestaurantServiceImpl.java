@@ -2,8 +2,11 @@ package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.dao.LicenseDao;
 import com.vendor.vendormanagement.dao.RestaurantDao;
+import com.vendor.vendormanagement.entity.Response;
 import com.vendor.vendormanagement.entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +20,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     LicenseDao licenseDao;
 
     @Override
-    public Restaurant saveRestaurant(Restaurant restaurant) {
-        return dao.save(restaurant);
+    public ResponseEntity<Restaurant> saveRestaurant(Restaurant restaurant) {
+        return Response.of(dao.save(restaurant), HttpStatus.CREATED);
     }
 
     @Override
@@ -27,14 +30,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void updateRestaurant(Restaurant restaurant) {
+    public ResponseEntity<String> updateRestaurant(Restaurant restaurant) {
         dao.updateRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantAddress(), restaurant.getRestaurantPhone(), restaurant.getRestaurantCategory(), restaurant.getRestaurantEmail(), restaurant.getRestaurantDescription(), restaurant.getRestaurantID());
+        return Response.of("Restaurant updated successfully");
     }
 
     @Override
-    public String deleteRestaurant(int id) {
+    public ResponseEntity<String> deleteRestaurant(int id) {
         dao.deleteById(id);
-        return "Deleted Restaurant with ID:" + id;
+        return Response.of("Restaurant deleted successfully");
     }
 
     @Override

@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface LicenseService {
-    public License findByID(int id);
     public ResponseEntity<String> saveLicense(MultipartFile license, int restaurantId);
     public ResponseEntity<String> updateLicense(MultipartFile license, int restaurantId);
     public ResponseEntity<String> deleteLicense(int id);

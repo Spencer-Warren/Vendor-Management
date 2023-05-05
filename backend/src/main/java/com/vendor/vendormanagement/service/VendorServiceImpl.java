@@ -1,6 +1,7 @@
 package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.dao.VendorDao;
+import com.vendor.vendormanagement.entity.Response;
 import com.vendor.vendormanagement.entity.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,10 @@ public class VendorServiceImpl implements VendorService{
     PasswordEncoder encoder;
 
     @Override
-    public Vendor saveVendor(Vendor vendor) {
+    public ResponseEntity<Vendor> saveVendor(Vendor vendor) {
         vendor.setPassword(encoder.encode(vendor.getPassword()));
         vendor.setVendorRole("ROLE_VENDOR");
-        return dao.save(vendor);
+        return Response.of(dao.save(vendor));
     }
 
     @Override

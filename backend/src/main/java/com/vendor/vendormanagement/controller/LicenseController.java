@@ -28,10 +28,10 @@ public class LicenseController {
         return service.updateLicense(license, restaurantId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{restaurantId}")
     @PreAuthorize("hasRole('ROLE_VENDOR')")
-    public ResponseEntity<byte[]> getLicense(@PathVariable int id) {
-        License license =  service.findByID(id);
+    public ResponseEntity<byte[]> getLicense(@PathVariable int restaurantId) {
+        License license =  service.findByRestaurant(restaurantId);
         MediaType mediaType = MediaType.valueOf(license.getFileType());
 
         return ResponseEntity.ok()

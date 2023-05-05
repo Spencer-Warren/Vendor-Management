@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dish } from 'src/app/models/dish';
@@ -47,7 +48,8 @@ export class VendorDishesComponent {
   toDelete(dish: Dish) {
     console.log(dish);
     if (confirm("Are you sure you want to delete: " + dish.dishName + "?" )) {
-      this.restAPI.deleteDish(dish.dishID).subscribe((data) => console.log(data));
+      this.restAPI.deleteDish(dish.dishID).subscribe((data: HttpResponse<any>) => console.log(data.body)
+      );
       this.getDishes();
     }
   }

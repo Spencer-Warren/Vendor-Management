@@ -2,7 +2,10 @@ package com.vendor.vendormanagement.service;
 
 import com.vendor.vendormanagement.dao.DishDao;
 import com.vendor.vendormanagement.entity.Dish;
+import com.vendor.vendormanagement.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,28 +17,28 @@ public class DishServiceImpl implements DishService {
     DishDao dao;
 
     @Override
-    public Dish saveDish(Dish dish) {
-        return dao.save(dish);
+    public ResponseEntity<Dish> saveDish(Dish dish) {
+        return Response.of(dao.save(dish), HttpStatus.CREATED);
     }
 
     @Override
-    public Dish findByRestaurantAndId(int restaurantId, int id) {
-        return dao.findByRestaurantAndId(restaurantId, id);
+    public ResponseEntity<Dish> findByRestaurantAndId(int restaurantId, int id) {
+        return Response.of(dao.findByRestaurantAndId(restaurantId, id));
     }
 
     @Override
-    public Dish updateDish(Dish dish) {
-        return dao.save(dish);
+    public ResponseEntity<Dish> updateDish(Dish dish) {
+        return Response.of(dao.save(dish));
     }
 
     @Override
-    public String deleteDish(int id) {
+    public ResponseEntity<String> deleteDish(int id) {
         dao.deleteById(id);
-        return "Deleted Dish with ID: " + id;
+        return Response.of("Dish deleted successfully");
     }
 
     @Override
-    public List<Dish> findAllByRestaurant(int restaurantId) {
-        return dao.findAllByRestaurant(restaurantId);
+    public ResponseEntity<List<Dish>> findAllByRestaurant(int restaurantId) {
+        return Response.of(dao.findAllByRestaurant(restaurantId));
     }
 }
