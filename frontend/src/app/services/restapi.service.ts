@@ -79,7 +79,6 @@ export class RESTAPIService {
 
 
   uploadLicense(license: any, id: string): Observable<any> {
-    console.log(license);
     return this.http.post(this.url + "/license/" + id, license, this.httpOptionsFile);
   }
 

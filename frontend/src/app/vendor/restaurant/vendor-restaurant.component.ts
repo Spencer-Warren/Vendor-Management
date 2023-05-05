@@ -20,9 +20,9 @@ export class VendorRestaurantComponent {
     this.getAllRestaurants();
   }
 
+  // Get all restaurants
   async getAllRestaurants() {
     this.restaurants = await this.restaurantService.getRestaurants();
-      console.log(this.restaurants);
       for (let i = 0; i < this.restaurants.length; i++) {
         this.visible.set(this.restaurants[i].restaurantID, false);
       }
@@ -57,7 +57,6 @@ export class VendorRestaurantComponent {
     if (confirm("Are you sure you want to delete: " + name + "?" )) {
       this.RestAPI.deleteRestaurant(id).subscribe((data) => console.log(data));
       this.restaurants = this.restaurants.filter((restaurant) => restaurant.restaurantID != id);
-      console.log(id + " : " + name);
     }
   }
 }

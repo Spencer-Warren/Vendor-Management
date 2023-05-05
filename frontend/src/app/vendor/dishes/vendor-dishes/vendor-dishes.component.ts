@@ -36,12 +36,9 @@ export class VendorDishesComponent {
   }
 
   toDelete(dish: Dish) {
-    console.log(dish);
     if (confirm("Are you sure you want to delete: " + dish.dishName + "?")) {
       this.restAPI.deleteDish(dish.dishID)
         .subscribe(
-          (data: HttpResponse<any>) =>
-            console.log(data.body)
         );
       this.getDishes();
     }

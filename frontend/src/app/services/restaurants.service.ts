@@ -38,6 +38,8 @@ export class RestaurantsService {
 
 
   // Get all restaurants
+  // Cache the restaurants
+  // If the restaurants are not cached, fetch them from the server
   async getRestaurants(): Promise<Array<Restaurant>> {
     if (this.restaurants == null) {
       this.restaurants = await firstValueFrom(this.refetchRestaurants());

@@ -28,7 +28,6 @@ export class DishCreateComponent {
     }
 
     onSubmit() {
-      console.log(this.dishForm, this.dishForm.valid);
       if (this.dishForm.valid) {
         let dish: Dish = new Dish(0, this.dishForm.value.name, this.dishForm.value.description, this.dishForm.value.price, this.dishForm.value.category, this.restaurantService.getCurrentRestaurant());
         this.restAPI.createDish(dish)

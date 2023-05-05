@@ -10,10 +10,14 @@ public class Response {
     }
 
     public static <T> ResponseEntity<T> of(T body, HttpStatus status) {
+        if (body instanceof String response) {
+            response = "{\"message\":\"" + response + "\"}";
+            return ResponseEntity.status(status).body((T) response);
+        }
         return ResponseEntity.status(status).body(body);
     }
 
     public static <T> ResponseEntity<T> of(T body) {
-        return ResponseEntity.status(HttpStatus.OK).body(body);
+        return of(body, HttpStatus.OK);
     }
 }
