@@ -16,6 +16,16 @@ public class Dish {
     @JoinColumn(name="restaurantID")
     private Restaurant restaurant;
 
+    public Dish() {
+        dishID = 0;
+        dishName = "";
+        dishPrice = 0;
+        dishDescription = "";
+        dishCategory = "";
+        restaurant = new Restaurant();
+    }
+
+
     public int getDishID() {
         return dishID;
     }
