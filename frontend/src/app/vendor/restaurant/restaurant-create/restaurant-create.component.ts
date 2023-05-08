@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-restaurant-create',
@@ -13,7 +14,7 @@ import { RESTAPIService } from 'src/app/services/restapi.service';
 export class RestaurantCreateComponent {
   restaurantForm!: FormGroup;
 
-    constructor(private restAPI: RESTAPIService, private router: Router, private authService: AuthenticationService) { }
+    constructor(private restAPI: RESTAPIService, private router: Router, private authService: AuthenticationService, private restaurantService: RestaurantsService) { }
   
     ngOnInit(): void {
       this.restaurantForm = new FormBuilder().group({
@@ -35,8 +36,8 @@ export class RestaurantCreateComponent {
         .subscribe(
           (data: Restaurant) => {
             alert("Restaurant has been created!");
-            let id: number = data.restaurantID;
-            this.router.navigate(["/vendor/license-upload/" + id]);
+            this.restaurantService.setCurrentRestaurant(data);
+            this.router.navigate(["/vendor/license-upload"]);
           }
         );
       }

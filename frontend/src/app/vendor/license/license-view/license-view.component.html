@@ -11,6 +11,11 @@
     <div *ngIf="isPDF()">
         <object [data]="license"></object>
     </div>
+
+    <div *ngIf="isWord()">
+        <p> Word documents are not supported. </p>
+        <p> Please download the file to view it. </p>
+    </div>
     <button class="btn btn-danger me-2" (click)="onBack()">Back</button>
     <button class="btn btn-outline-primary me-2" (click)="onEdit()">Edit</button>
     <a class="btn btn-primary me-2" (click)="onDownload()">Download</a>

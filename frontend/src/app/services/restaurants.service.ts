@@ -41,7 +41,7 @@ export class RestaurantsService {
   // Cache the restaurants
   // If the restaurants are not cached, fetch them from the server
   async getRestaurants(): Promise<Array<Restaurant>> {
-    if (this.restaurants == null) {
+    if (this.restaurants == null || this.restaurants.length == 0) {
       this.restaurants = await firstValueFrom(this.refetchRestaurants());
     }
     return this.restaurants;
@@ -50,6 +50,13 @@ export class RestaurantsService {
   refetchRestaurants(): Observable<Restaurant[]> {
     let id = sessionStorage.getItem("vendorId");
     return this.restAPI.getAllRestaurants(id);
+  }
+
+  // Clear all
+  clearAll() {
+    // this.restaurants = [];
+    // delete this.currentRestaurant;
+    // this.currentDish = null;
   }
   
 }

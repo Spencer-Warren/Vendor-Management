@@ -51,7 +51,7 @@ export class RESTAPIService {
   }
 
   deleteVendor(id: any): Observable<any> {
-    return this.http.delete(this.url + "/delete/" + id, this.httpOptions);
+    return this.http.delete(this.url + "/vendor/" + id, this.httpOptions);
   }
 
 

@@ -5,6 +5,7 @@
         </div>
     </div>
     <div class="card-body">
+        <button class="btn btn-danger me-2" (click)="toRestaurants()">Back</button>
         <button class="btn btn-primary" (click)="toCreate()">Create a Dish</button>
         <div *ngIf="dishes == null || dishes.length == 0" class="m-3">
             No dishes found... <br>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RESTAPIService } from './restapi.service';
 import { Vendor } from '../models/vendor';
 import { Router } from '@angular/router';
+import { RestaurantsService } from './restaurants.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class AuthenticationService {
     sessionStorage.removeItem("vendorEmail");
     sessionStorage.removeItem("vendorUsername");
     sessionStorage.removeItem("token");
-    
+    // this.restaurantService.setCurrentRestaurant();
     this.router.navigate(['/vendor/login']);
   }
 

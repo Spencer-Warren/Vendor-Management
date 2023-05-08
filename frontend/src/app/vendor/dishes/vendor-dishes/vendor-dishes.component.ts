@@ -31,6 +31,10 @@ export class VendorDishesComponent {
     return "$" + formatNumber(price, 'en-US', '1.2-2');
   }
 
+  toRestaurants() {
+    this.router.navigate(['/vendor/restaurants']);
+  }
+
   toCreate() {
     this.router.navigate(['/vendor/restaurants/dishes/create']);
   }

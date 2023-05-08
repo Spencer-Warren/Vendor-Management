@@ -50,6 +50,10 @@ export class LicenseViewComponent {
     return this.type == "application/pdf"
   }
 
+  isWord(): boolean {
+    return this.type == "application/msword" || this.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  }
+
   onEdit() {
     this.router.navigate(['/vendor/license-upload/']);
   }
