@@ -72,7 +72,6 @@ public class Dish {
                 ", dishPrice=" + dishPrice +
                 ", dishDescription='" + dishDescription + '\'' +
                 ", dishCategory='" + dishCategory + '\'' +
-                ", restaurant=" + restaurant +
                 '}';
     }
 }

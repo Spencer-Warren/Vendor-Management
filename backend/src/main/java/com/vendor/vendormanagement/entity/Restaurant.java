@@ -13,6 +13,7 @@ public class Restaurant {
     private String restaurantAddress;
     private String restaurantType;
     private String restaurantCategory;
+    @Column(length = 1024)
     private String restaurantDescription;
     private String restaurantEmail;
     private String restaurantPhone;
@@ -124,8 +125,6 @@ public class Restaurant {
                 ", restaurantDescription='" + restaurantDescription + '\'' +
                 ", restaurantEmail='" + restaurantEmail + '\'' +
                 ", restaurantPhone='" + restaurantPhone + '\'' +
-                ", vendor=" + vendor +
-                ", dishes=" + dishes +
                 '}';
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public class Response {
 
-    private Response() {
+    Response() {
         throw new IllegalStateException("Utility class");
     }
 

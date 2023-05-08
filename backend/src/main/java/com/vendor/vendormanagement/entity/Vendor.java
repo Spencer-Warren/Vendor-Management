@@ -77,11 +77,11 @@ public class Vendor implements UserDetails {
     @Override
     public String toString() {
         return "Vendor{" +
-                "VendorID=" + vendorID +
-                ", VendorName='" + vendorName + '\'' +
-                ", VendorUsername='" + vendorUsername + '\'' +
-                ", VendorPassword='" + vendorPassword + '\'' +
-                ", VendorEmail='" + vendorEmail + '\'' +
+                "vendorID=" + vendorID +
+                ", vendorName='" + vendorName + '\'' +
+                ", vendorUsername='" + vendorUsername + '\'' +
+                ", vendorPassword='" + vendorPassword + '\'' +
+                ", vendorEmail='" + vendorEmail + '\'' +
                 '}';
     }
     @JsonIgnore
