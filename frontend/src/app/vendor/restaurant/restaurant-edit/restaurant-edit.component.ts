@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-restaurant-edit',
@@ -14,7 +15,7 @@ export class RestaurantEditComponent {
   restaurantForm!: FormGroup;
   oldRestaurant!: Restaurant;
 
-  constructor(private restAPI: RESTAPIService, private router: Router, private authService: AuthenticationService) { }
+  constructor(private restAPI: RESTAPIService, private router: Router, private authService: AuthenticationService, private restaurantService: RestaurantsService) { }
 
   ngOnInit(): void {
 
@@ -32,10 +33,9 @@ export class RestaurantEditComponent {
   }
 
   getRestaurant() {
-    // Get the restaurant ID from the URL
-    let id: Number = parseInt(this.router.url.split('/')[4]);
+    let restaurant: Restaurant = this.restaurantService.getCurrentRestaurant();
     // Get the restaurant from the REST API
-    this.restAPI.getRestaurant(id).subscribe((data: any) => {
+    this.restAPI.getRestaurant(restaurant.restaurantID).subscribe((data: any) => {
       this.oldRestaurant = data;
       // Set the form values to the restaurant values
       this.restaurantForm.patchValue({

@@ -18,7 +18,7 @@
                         <h4>{{dish.dishName}}</h4>
                     </div>
                     <div class="card-body">
-                        <p>Price: ${{dish.dishPrice}}</p>
+                        <p>Price: {{formatPrice(dish.dishPrice)}}</p>
                         <p>Category: {{dish.dishCategory}}</p>
                         <p>Description:</p><p>{{dish.dishDescription}}</p>
                         <button (click)="toEdit(dish)" class="btn btn-primary me-2">Edit</button>

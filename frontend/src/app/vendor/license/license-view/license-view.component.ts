@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-license-view',
@@ -15,12 +16,12 @@ export class LicenseViewComponent {
   type!: any;
   fileName!: any;
 
-  constructor(private restAPI: RESTAPIService, private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private restAPI: RESTAPIService, private router: Router, private sanitizer: DomSanitizer, private restaurantService: RestaurantsService) { }
 
   ngOnInit(): void {
-    let id = this.router.url.split("/")[3];
+    let id: Number = this.restaurantService.getCurrentRestaurant().restaurantID;
 
-    this.restAPI.getLicense(id)
+    this.restAPI.getLicense(id.toString())
     .subscribe((res: HttpResponse<any>) => {
 
       var contentDisposition = res.headers.get('Content-Disposition');
@@ -50,7 +51,7 @@ export class LicenseViewComponent {
   }
 
   onEdit() {
-    this.router.navigate(['/vendor/license-upload/' + this.router.url.split("/")[3]]);
+    this.router.navigate(['/vendor/license-upload/']);
   }
 
   onBack() {

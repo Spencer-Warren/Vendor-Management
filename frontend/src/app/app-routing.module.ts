@@ -33,8 +33,8 @@ const routes: Routes = [
   { path: 'vendor/login',      component: LoginComponent},
   { path: 'vendor/register',   component: RegisterComponent},
 
-  { path: 'vendor/license-upload/:id', component: LicenseUploadComponent},
-  { path: 'vendor/license-view/:id',   component: LicenseViewComponent},
+  { path: 'vendor/license-upload', component: LicenseUploadComponent},
+  { path: 'vendor/license-view',   component: LicenseViewComponent},
 
   { path: 'vendor/profile',      component: ProfileComponent},
   { path: 'vendor/profile/edit', component: ProfileEditComponent },

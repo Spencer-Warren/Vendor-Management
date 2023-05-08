@@ -40,12 +40,14 @@ export class VendorRestaurantComponent {
     this.router.navigate(['/vendor/restaurants/create']);
   }
 
-  toEdit(id: Number) {
-    this.router.navigate(['/vendor/restaurants/edit/' + id]);
+  toEdit(restaurant: Restaurant) {
+    this.restaurantService.setCurrentRestaurant(restaurant);
+    this.router.navigate(['/vendor/restaurants/edit/']);
   }
 
-  toLicense(id: Number) {
-    this.router.navigate(['/vendor/license-view/' + id]);
+  toLicense(restaurant: Restaurant) {
+    this.restaurantService.setCurrentRestaurant(restaurant);
+    this.router.navigate(['/vendor/license-view/']);
   }
 
   toDishes(restaurant: Restaurant) {

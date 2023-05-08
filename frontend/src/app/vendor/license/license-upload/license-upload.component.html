@@ -5,9 +5,15 @@
     <div class="card-body">
         <p>A food and safety license is required
             to sell food in the state of California. <br>
-            Please upload your license below.
+            If you do not have a license, please contact your local health department. <br>
+            Please upload your license below. <br>
         </p>
-        <input (change)="onFileChange($event)" type="file" class="form-control file-upload" id="license" placeholder="License">
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Upload</button>
+        <strong>License Requirements:</strong><br>
+        <ul>
+            <li>Must be a PDF or Word Document</li>
+            <li>Must be less than 5MB</li>
+        </ul>
+        <input (change)="onFileChange($event)" type="file" class="form-control file-upload w-25" id="license" placeholder="License">
+        <button type="submit" class="btn btn-primary mt-2" (click)="onSubmit()">Upload</button>
     </div>
 </div>

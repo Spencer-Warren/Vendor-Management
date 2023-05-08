@@ -1,3 +1,4 @@
+import { formatNumber } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,6 +27,10 @@ export class VendorDishesComponent {
     });
   }
 
+  formatPrice(price: number) {
+    return "$" + formatNumber(price, 'en-US', '1.2-2');
+  }
+
   toCreate() {
     this.router.navigate(['/vendor/restaurants/dishes/create']);
   }
@@ -39,8 +44,9 @@ export class VendorDishesComponent {
     if (confirm("Are you sure you want to delete: " + dish.dishName + "?")) {
       this.restAPI.deleteDish(dish.dishID)
         .subscribe(
+          () => this.getDishes()
+          
         );
-      this.getDishes();
     }
   }
 }

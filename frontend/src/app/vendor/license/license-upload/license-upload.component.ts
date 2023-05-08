@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { RESTAPIService } from 'src/app/services/restapi.service';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-license-upload',
@@ -10,15 +11,17 @@ import { RESTAPIService } from 'src/app/services/restapi.service';
 })
 export class LicenseUploadComponent {
   file!: File;
+  allowedTypes: string[] = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
   
-    constructor(private restAPI: RESTAPIService, private router: Router) { }
+    constructor(private restAPI: RESTAPIService, private router: Router, private restauarantService: RestaurantsService) { }
 
     onFileChange(event: any) {
       let temp: File = event.target.files[0];
-      if (temp.type == 'application/pdf' || temp.type == 'application/msword') {
+      console.log(temp.type);
+      if (this.allowedTypes.includes(temp.type)) {
         this.file = temp;
       } else {
-        alert('Please upload a pdf or doc file');
+        alert('Please choose a pdf or doc file');
         event.target.value = '';
       }
     }
@@ -28,7 +31,8 @@ export class LicenseUploadComponent {
         alert('Please select a file');
         return;
       }
-      let id: string = this.router.url.split('/')[3];
+      // get restaurant id from service and send it to the api
+      let id: string = this.restauarantService.getCurrentRestaurant().restaurantID.toString();
       let formData = new FormData();
       formData.append('file', this.file);
       this.restAPI.uploadLicense(formData, id).pipe(map((response: any) => {

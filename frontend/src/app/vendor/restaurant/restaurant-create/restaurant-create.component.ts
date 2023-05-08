@@ -21,7 +21,7 @@ export class RestaurantCreateComponent {
         restaurantAddress: new FormControl <string> ('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
         restaurantPhone: new FormControl <string> ('', [Validators.minLength(3), Validators.maxLength(50)]),
         restaurantEmail: new FormControl <string> ('', [Validators.required, Validators.email]),
-        restaurantDescription: new FormControl <string> ('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+        restaurantDescription: new FormControl <string> ('', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]),
         restaurantCategory: new FormControl <string> ('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
         restaurantType: new FormControl <string> ('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)])
         });

@@ -42,7 +42,7 @@ export class AuthenticationService {
     sessionStorage.removeItem("vendorUsername");
     sessionStorage.removeItem("token");
     
-    this.router.navigate(['']);
+    this.router.navigate(['/vendor/login']);
   }
 
   createAuthenticationToken(username: String, password: String) {

@@ -16,14 +16,14 @@
                     </div>
                     <div class="card-body">
                         <p class="inline">{{restaurant.restaurantAddress}}</p>
-                        <div *ngIf="visible.get(restaurant.restaurantID)">
-                            <p>Address: {{restaurant.restaurantAddress}}</p>
-                            <p>Description: {{restaurant.restaurantDescription}}</p>
+                        <div *ngIf="visible.get(restaurant.restaurantID)" class="mt-3">
                             <p>Phone: {{restaurant.restaurantPhone}}</p>
                             <p>Email: {{restaurant.restaurantEmail}}</p>
                             <p>Category: {{restaurant.restaurantCategory}}</p>
-                            <p>Type: {{restaurant.restaurantType}}</p>
-                            <a (click)="toLicense(restaurant.restaurantID)"
+                            <p>Type: {{restaurant.restaurantType}}</p>                            <p>Description:</p>
+                            <p>{{restaurant.restaurantDescription}}</p>
+
+                            <a (click)="toLicense(restaurant)"
                                 class="btn btn-outline-primary mb-2 inline">View License</a>
                             <a (click)="toDishes(restaurant)"
                                 class="btn btn-outline-primary mb-2 inline">View Dishes</a>
@@ -31,7 +31,7 @@
                         <div class="float-end inline">
                             <a (click)="toggleCollapse(restaurant.restaurantID)"
                                 class="btn btn-outline-primary me-2">Details</a>
-                            <a (click)="toEdit(restaurant.restaurantID)" class="btn btn-primary me-2">Edit</a>
+                            <a (click)="toEdit(restaurant)" class="btn btn-primary me-2">Edit</a>
                             <button (click)="delete(restaurant.restaurantID, restaurant.restaurantName)"
                                 class="btn btn-danger">Delete</button>
                         </div>
