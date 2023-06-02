@@ -26,6 +26,7 @@ Before running the application, ensure you have the following prerequisites inst
 - Node.js: Version 12.x or higher
 - Angular CLI: Version 12.x or higher
 - Java Development Kit (JDK): Version 17 or higher
+- MySQL: Version 5.7 or higher
 
 ## Usage
 
