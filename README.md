@@ -76,10 +76,6 @@ Contributions to the Vendor Management Application are welcome! To contribute, f
 4. Push your changes to your forked repository.
 5. Submit a pull request, explaining the changes you have made.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - [Angular](https://angular.io/)
